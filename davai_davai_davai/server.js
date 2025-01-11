@@ -29,6 +29,8 @@ Bun.serve({
 
     const url = new URL(req.url);
 
+    //============================weapon============================\\
+
     if (url.pathname === "/api/weapon" && req.method === "GET") {
       try {
         const [weaponList] = await db.query("SELECT Weapon_Name FROM weapon");
@@ -56,6 +58,7 @@ Bun.serve({
             status: 404,
           });
         }
+
         return new Response(JSON.stringify(weaponData[0]), {
           headers: {
             ...corsHeaders,
@@ -87,4 +90,4 @@ Bun.serve({
   },
 });
 
-console.log("Server is running on http://localhost:8000");
+console.log("Server.js is running on http://localhost:8000");
