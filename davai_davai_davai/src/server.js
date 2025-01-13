@@ -1,6 +1,19 @@
 import Bun from "bun";
 import { connectDB } from "./db";
 
+async function loadQueries() {
+  try {
+    const queriesJson = await Bun.file(
+      "./src/config/queries.json",
+      "utf-8",
+    ).text();
+    return JSON.parse(queriesJson);
+  } catch (err) {
+    console.error("Error reading queries.json : ", err);
+    return {};
+  }
+}
+
 let db;
 connectDB()
   .then((connection) => {
@@ -8,7 +21,7 @@ connectDB()
     console.log("DB connection established for the server.");
   })
   .catch((err) => {
-    console.error("Error initializing DB connection: ", err.message);
+    console.error("Error initializing DB connection: ", err);
   });
 
 Bun.serve({
@@ -28,12 +41,13 @@ Bun.serve({
     }
 
     const url = new URL(req.url);
+    const queries = await loadQueries();
 
     //============================weapon============================\\
 
     if (url.pathname === "/api/weapon" && req.method === "GET") {
       try {
-        const [weaponList] = await db.query("SELECT Weapon_Name FROM weapon");
+        const [weaponList] = await db.query(queries.getWeaponList);
 
         if (weaponList.length === 0) {
           return new Response(JSON.stringify({ error: "Weapon not found" }), {
@@ -48,7 +62,7 @@ Bun.serve({
           },
         });
       } catch (err) {
-        console.error("Database query error : ", err.message);
+        console.error("Database query error : ", err);
         return new Response(
           JSON.stringify({ error: "Internal Server Error" }),
           {

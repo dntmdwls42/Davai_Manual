@@ -1,0 +1,3 @@
+{
+  "getWeaponList": "SELECT Weapon_Name FROM weapon"
+}
