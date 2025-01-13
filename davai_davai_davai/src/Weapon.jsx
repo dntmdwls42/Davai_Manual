@@ -6,6 +6,7 @@ function Weapon() {
   const [life, setLife] = React.useState(3);
   const [userInput, setUserInput] = React.useState("");
   const [isSubmitted, setIsSubmitted] = React.useState(false);
+  const [submittedWeapon, setSubmittedWeapon] = React.useState([]);
   const [message, setMessage] = React.useState("");
 
   const fetchRandomWeapon = async () => {
@@ -14,11 +15,21 @@ function Weapon() {
       if (!response.ok) throw new Error("Failed to fetch weapon list");
 
       const data = await response.json();
+
+      if (submittedWeapon.includes(data.Weapon_Name)) {
+        console.log(submittedWeapon);
+        console.log(data.Weapon_Name);
+        fetchRandomWeapon();
+        return;
+      }
+
       setWeapon(data);
       setIsSubmitted(false);
+      setSubmittedWeapon((prev) => [...prev, data.Weapon_Name]);
       setUserInput("");
       setMessage("");
     } catch (err) {
+      console.error(err);
       setMessage("Error : 데이터를 불러오는데 실패했습니다.");
     }
   };
@@ -35,8 +46,11 @@ function Weapon() {
     e.preventDefault();
 
     if (
-      userInput.trim().replace(/\s+/g, "").toLowerCase() ===
-      weapon.Weapon_Name.trim().replace(/\s+/g, "").toLowerCase()
+      userInput.trim().replace(/\s+/g, "").replace(/-/g, "").toLowerCase() ===
+      weapon.Weapon_Name.trim()
+        .replace(/\s+/g, "")
+        .replace(/-/g, "")
+        .toLowerCase()
     ) {
       setScore((score) => score + 1);
       setMessage("정답입니다! 점수가 1점 증가했습니다.");
