@@ -4,6 +4,8 @@ function Weapon() {
   const [weapon, setWeapon] = React.useState(null);
   const [score, setScore] = React.useState(0);
   const [life, setLife] = React.useState(3);
+  const [quizCount, setQuizCount] = React.useState(0);
+  const maxQuizCount = 10;
   const [userInput, setUserInput] = React.useState("");
   const [isSubmitted, setIsSubmitted] = React.useState(false);
   const [submittedWeapon, setSubmittedWeapon] = React.useState([]);
@@ -17,8 +19,6 @@ function Weapon() {
       const data = await response.json();
 
       if (submittedWeapon.includes(data.Weapon_Name)) {
-        console.log(submittedWeapon);
-        console.log(data.Weapon_Name);
         fetchRandomWeapon();
         return;
       }
@@ -63,6 +63,7 @@ function Weapon() {
   };
 
   const handleNext = () => {
+    setQuizCount((count) => count + 1);
     fetchRandomWeapon();
   };
 
@@ -74,11 +75,18 @@ function Weapon() {
     return <div>Loading...</div>;
   }
 
-  if (life < 0) {
+  if (life < 0 || quizCount >= maxQuizCount) {
     return (
       <div>
-        <h3>모든 체력을 소모하였습니다.</h3>
-        <h4>최종 점수 : {score}</h4>
+        <h3>
+          {life < 0
+            ? "모든 체력을 소모하였습니다."
+            : "모든 문제를 제출하셨습니다."}
+        </h3>
+        <h4>총 문제 수 : {maxQuizCount}</h4>
+        <h4>푼 문제 수 : {life < 0 ? quizCount + 1 : quizCount}</h4>
+        <h4>맞춘 문제 수 : {score}</h4>
+        <h4>남은 생명 : {life < 0 ? 0 : life}</h4>
         <button onClick={handleRestart}>다시 시작하기</button>
       </div>
     );
@@ -86,7 +94,9 @@ function Weapon() {
 
   return (
     <div>
-      <h3>총기 이름 : {weapon.Weapon_Name}</h3>
+      <h3>
+        {quizCount + 1}. 총기 이름 : {weapon.Weapon_Name}
+      </h3>
 
       <form onSubmit={handleSubmit}>
         <div>이 총기의 이름은 무엇인가요?</div>
