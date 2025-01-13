@@ -11,9 +11,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <Router>
     <Routes>
       <Route path="/" element={<App />}></Route>
-      <Route path="/Minigame" element={<Minigame />}>
-        <Route path="Weapon" element={<Weapon />}></Route>
-      </Route>
+      <Route path="/Minigame" element={<Minigame />}></Route>
+      <Route path="/Minigame/Weapon" element={<Weapon />}></Route>
     </Routes>
   </Router>,
 );

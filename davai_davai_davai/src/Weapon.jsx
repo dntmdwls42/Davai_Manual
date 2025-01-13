@@ -1,12 +1,17 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 
 function Weapon() {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const quizNumber = parseInt(queryParams.get("number"), 10) || 5;
+
   const [weaponList, setWeaponList] = React.useState([]);
   const [weapon, setWeapon] = React.useState(null);
   const [score, setScore] = React.useState(0);
   const [life, setLife] = React.useState(3);
   const [quizCount, setQuizCount] = React.useState(0);
-  const maxQuizCount = 5;
+  const [maxQuizCount, setMaxQuizCount] = React.useState(quizNumber);
   const [userInput, setUserInput] = React.useState("");
   const [isSubmitted, setIsSubmitted] = React.useState(false);
   const [submittedWeapons, setSubmittedWeapons] = React.useState([]);
@@ -83,6 +88,10 @@ function Weapon() {
     window.location.reload();
   };
 
+  const handleQuizNumber = (e) => {
+    setMaxQuizCount(e);
+  };
+
   if (!weapon) {
     return <div>Loading...</div>;
   }
@@ -127,6 +136,7 @@ function Weapon() {
       <h4>
         현재 점수 : {score} | 현재 체력 : {life}
       </h4>
+      <h4>총 문제 수 : {maxQuizCount}</h4>
 
       <button onClick={handleNext} hidden={!isSubmitted}>
         다음 퀴즈

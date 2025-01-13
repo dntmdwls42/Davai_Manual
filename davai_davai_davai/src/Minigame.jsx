@@ -1,5 +1,4 @@
-import React from "react";
-import { Outlet } from "react-router-dom";
+import Menu from "./Menu.jsx";
 
 function Minigame() {
   return (
@@ -16,7 +15,7 @@ function Minigame() {
       >
         <h1>Here is a Minigame Page!</h1>
       </div>
-      <Outlet />
+      <Menu />
     </>
   );
 }
