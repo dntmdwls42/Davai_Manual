@@ -35,31 +35,13 @@ Bun.serve({
       try {
         const [weaponList] = await db.query("SELECT Weapon_Name FROM weapon");
 
-        const randomWeapon =
-          weaponList[Math.floor(Math.random() * weaponList.length)]
-            ?.Weapon_Name;
-
-        if (!randomWeapon) {
-          return new Response(
-            JSON.stringify({ error: "Weapon not found in the list" }),
-            {
-              status: 404,
-            },
-          );
-        }
-
-        const [weaponData] = await db.query(
-          "SELECT * FROM weapon WHERE Weapon_Name = ?",
-          [randomWeapon],
-        );
-
-        if (weaponData.length === 0) {
+        if (weaponList.length === 0) {
           return new Response(JSON.stringify({ error: "Weapon not found" }), {
             status: 404,
           });
         }
 
-        return new Response(JSON.stringify(weaponData[0]), {
+        return new Response(JSON.stringify(weaponList), {
           headers: {
             ...corsHeaders,
             "Content-Type": "application/json",

@@ -1,42 +1,53 @@
 import React from "react";
 
 function Weapon() {
+  const [weaponList, setWeaponList] = React.useState([]);
   const [weapon, setWeapon] = React.useState(null);
   const [score, setScore] = React.useState(0);
   const [life, setLife] = React.useState(3);
   const [quizCount, setQuizCount] = React.useState(0);
-  const maxQuizCount = 10;
+  const maxQuizCount = 5;
   const [userInput, setUserInput] = React.useState("");
   const [isSubmitted, setIsSubmitted] = React.useState(false);
-  const [submittedWeapon, setSubmittedWeapon] = React.useState([]);
+  const [submittedWeapons, setSubmittedWeapons] = React.useState([]);
   const [message, setMessage] = React.useState("");
 
-  const fetchRandomWeapon = async () => {
+  const fetchWeaponList = async () => {
     try {
       const response = await fetch("http://localhost:8000/api/weapon");
       if (!response.ok) throw new Error("Failed to fetch weapon list");
 
       const data = await response.json();
 
-      if (submittedWeapon.includes(data.Weapon_Name)) {
-        fetchRandomWeapon();
-        return;
-      }
-
-      setWeapon(data);
-      setIsSubmitted(false);
-      setSubmittedWeapon((prev) => [...prev, data.Weapon_Name]);
-      setUserInput("");
-      setMessage("");
+      setWeaponList(data);
     } catch (err) {
       console.error(err);
       setMessage("Error : 데이터를 불러오는데 실패했습니다.");
     }
   };
 
+  const fetchRandomWeapon = () => {
+    const availableWeapons = weaponList.filter(
+      (weapon) => !submittedWeapons.includes(weapon.Weapon_Name),
+    );
+
+    const randomWeapon =
+      availableWeapons[Math.floor(Math.random() * availableWeapons.length)];
+
+    setWeapon(randomWeapon);
+    setIsSubmitted(false);
+    setUserInput("");
+    setMessage("");
+  };
+
   React.useEffect(() => {
-    fetchRandomWeapon();
+    fetchWeaponList();
   }, []);
+
+  React.useEffect(() => {
+    if (weaponList.length > 0) fetchRandomWeapon();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [weaponList]);
 
   const handleInputChange = (e) => {
     setUserInput(e.target.value);
@@ -60,6 +71,7 @@ function Weapon() {
     }
 
     setIsSubmitted(true);
+    setSubmittedWeapons((prev) => [...prev, weapon?.Weapon_Name]);
   };
 
   const handleNext = () => {
@@ -79,9 +91,7 @@ function Weapon() {
     return (
       <div>
         <h3>
-          {life < 0
-            ? "모든 체력을 소모하였습니다."
-            : "모든 문제를 제출하셨습니다."}
+          {life < 0 ? "모든 체력을 소모하였습니다." : "모든 문제를 푸셨습니다."}
         </h3>
         <h4>총 문제 수 : {maxQuizCount}</h4>
         <h4>푼 문제 수 : {life < 0 ? quizCount + 1 : quizCount}</h4>
