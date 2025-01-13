@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "db": "concurrently \"vite\" \"bun run server.js\" \"bun run db.js\"",
+    "db": "concurrently \"vite\" \"bun run src/server.js\" \"bun run src/db.js\"",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
