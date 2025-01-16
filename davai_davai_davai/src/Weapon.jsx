@@ -11,7 +11,7 @@ function Weapon() {
   const [score, setScore] = React.useState(0);
   const [life, setLife] = React.useState(3);
   const [quizCount, setQuizCount] = React.useState(0);
-  const [maxQuizCount, setMaxQuizCount] = React.useState(quizNumber);
+  const [maxQuizCount] = React.useState(quizNumber);
   const [userInput, setUserInput] = React.useState("");
   const [isSubmitted, setIsSubmitted] = React.useState(false);
   const [submittedWeapons, setSubmittedWeapons] = React.useState([]);
@@ -86,10 +86,6 @@ function Weapon() {
 
   const handleRestart = () => {
     window.location.reload();
-  };
-
-  const handleQuizNumber = (e) => {
-    setMaxQuizCount(e);
   };
 
   if (!weapon) {
