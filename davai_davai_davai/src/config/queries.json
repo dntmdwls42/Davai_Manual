@@ -1,3 +1,18 @@
 {
-  "getWeaponList": "SELECT Weapon_Name FROM weapon"
+  "getWeaponAll": "SELECT * FROM Weapon",
+  "getWeaponList": "SELECT Weapon_Name FROM Weapon",
+  "getWeaponInfoFromWeaponName": "SELECT Weapon_Type Weapon_Caliber Weapon_Fire_Rate FROM Weapon WHERE Weapon_Name = ?",
+  "getAmmoAll": "SELECT * FROM Ammo",
+  "getAmmoList": "SELECT Ammo_Name FROM Ammo",
+  "getAmmoFromAmmoCaliber": "SELECT Ammo_Name FROM Ammo WHERE Ammo_Caliber = ?",
+  "getMagazineAll": "SELECT * FROM Magazine",
+  "getMagazineList": "SELECT Magazine_Name FROM Magazine",
+  "getMagazineListFromMagazineCaliber": "SELECT Magazine_Name FROM Magazine WHERE Magazine_Caliber = ?",
+  "getSoundAll": "SELECT * FROM Sound",
+  "getSoundList": "SELECT Sound_Name FROM Sound",
+  "getSoundListFromItemName": "SELECT Sound_Name FROM Sound WHERE Sound_Item_Name = ?",
+  "getImageAll": "SELECT * FROM Image",
+  "getImageList": "SELECT Image_Name FROM Image",
+  "getImageListFromItemName": "SELECT Image_Name FROM Image WHERE Image_Item_Name = ?",
+  "getAnswerContentFromItemName": "SELECT Answer_Content FROM Answer WHERE Answer_Item_Name = ?"
 }
