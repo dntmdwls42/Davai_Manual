@@ -28,9 +28,9 @@ DB 테이블 및 컬럼을 검토해야함
 ## Font
 ### English
 
-(https://fonts.google.com/specimen/Inter/license?query=inter) Inter 폰트
-(https://fonts.google.com/specimen/Source+Sans+3/license?query=Source+Sans+Pro) Source Sans 3 폰트
-(https://fonts.google.com/specimen/Montserrat/license?query=Montserrat) Montserrat 폰트 
+(https://fonts.google.com/specimen/Inter?query=inter) Inter 폰트
+(https://fonts.google.com/specimen/Source+Sans+3?query=Source+Sans+Pro) Source Sans 3 폰트
+(https://fonts.google.com/specimen/Montserrat?query=Montserrat) Montserrat 폰트 
 
 ### Common
 
