@@ -1,4 +1,5 @@
-import "./App.css";
+import Background from "./Background";
+import "./css/app.css";
 
 // function App() {
 //   const [count, setCount] = React.useState(0);
@@ -32,14 +33,18 @@ import "./App.css";
 function App() {
   return (
     <>
-      <div className="background-image"></div>
-      <div>
-        <h1 className="main-title">Davai manual</h1>
-        <h2 className="sub-title">Minigame of EFT</h2>
-      </div>
-      <div>
-        <button className="next-page-button">button1</button>
-        <button className="next-page-button">button1</button>
+      <Background />
+      <div id="main-container">
+        <div className="title-container center-column">
+          <h1 className="main-title">Davai manual</h1>
+          <h2 className="sub-title">Minigame of EFT</h2>
+        </div>
+
+        <div className="main-btn-container">
+          <button className="main-btn">Button 1</button>
+          <button className="main-btn">Button 2</button>
+          <button className="main-btn">Button 3</button>
+        </div>
       </div>
     </>
   );
