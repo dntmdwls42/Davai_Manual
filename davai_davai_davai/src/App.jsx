@@ -33,7 +33,6 @@ function App() {
   return (
     <>
       <div className="background-image"></div>
-      <div className="blur"></div>
       <div>
         <h1 className="main-title">Davai manual</h1>
         <h2 className="sub-title">Minigame of EFT</h2>

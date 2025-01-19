@@ -1,5 +1,9 @@
 @import "reset.css";
 
+body {
+  overflow: hidden;
+}
+
 .background-image {
   content: ""; /* 가상 요소의 내용 설정 */
   position: absolute; /* 절대 위치 설정 */
@@ -12,17 +16,8 @@
   background-position: center;
   background-repeat: no-repeat;
   z-index: -2; /* 가상 요소를 배경 이미지 위에 배치 */
-}
-
-.blur {
-  content: ""; /* 가상 요소의 내용 설정 */
-  position: absolute; /* 절대 위치 설정 */
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
   filter: blur(10px); /* 이미지에 블러 효과 추가 */
-  z-index: -1; /* 가상 요소를 배경 이미지 위에 배치 */
+  transform: scale(1.05);
 }
 
 .main-title {
