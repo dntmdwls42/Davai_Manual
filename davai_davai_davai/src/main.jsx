@@ -5,8 +5,6 @@ import App from "./App.jsx";
 import Minigame from "./Minigame.jsx";
 import Weapon from "./Weapon.jsx";
 
-import "./index.css";
-
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Router>
     <Routes>
