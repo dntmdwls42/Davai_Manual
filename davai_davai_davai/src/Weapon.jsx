@@ -8,15 +8,18 @@ function Weapon() {
 
   const [weaponList, setWeaponList] = React.useState([]);
   const [weapon, setWeapon] = React.useState(null);
+  const [submittedWeapons, setSubmittedWeapons] = React.useState([]);
   const [score, setScore] = React.useState(0);
   const [life, setLife] = React.useState(3);
   const [quizCount, setQuizCount] = React.useState(0);
+  //minigame 페이지에서 quizNumber를 URL 파라미터로 받아옴
   const [maxQuizCount] = React.useState(quizNumber);
   const [userInput, setUserInput] = React.useState("");
+  //제출 시 버튼 비활성화 및 다음 문제 버튼 출력
   const [isSubmitted, setIsSubmitted] = React.useState(false);
-  const [submittedWeapons, setSubmittedWeapons] = React.useState([]);
   const [message, setMessage] = React.useState("");
 
+  //무기 리스트를 불러옴
   const fetchWeaponList = async () => {
     try {
       const response = await fetch("http://localhost:8000/api/weapon");
@@ -31,11 +34,13 @@ function Weapon() {
     }
   };
 
+  //무기 리스트에서 이미 출제한 무기를 제외하고 무기를 랜덤으로 불러옴
   const fetchRandomWeapon = () => {
     const availableWeapons = weaponList.filter(
       (weapon) => !submittedWeapons.includes(weapon.Weapon_Name),
     );
 
+    //난수를 이용하여 무기를 랜덤으로 불러옴
     const randomWeapon =
       availableWeapons[Math.floor(Math.random() * availableWeapons.length)];
 
@@ -49,6 +54,7 @@ function Weapon() {
     fetchWeaponList();
   }, []);
 
+  //무기 리스트가 업데이트 되면 무기를 불러옴
   React.useEffect(() => {
     if (weaponList.length > 0) fetchRandomWeapon();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -61,6 +67,7 @@ function Weapon() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    //사용자 입력값과 정답 확인 및 비교를 위한 전처리
     if (
       userInput.trim().replace(/\s+/g, "").replace(/-/g, "").toLowerCase() ===
       weapon.Weapon_Name.trim()

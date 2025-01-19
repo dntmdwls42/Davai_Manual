@@ -1,6 +1,7 @@
 import Bun from "bun";
 import { connectDB } from "./db";
 
+//queries.json 파일을 읽어와서 쿼리를 불러옴
 async function loadQueries() {
   try {
     const queriesJson = await Bun.file(
@@ -47,17 +48,21 @@ Bun.serve({
 
     if (url.pathname === "/api/weapon" && req.method === "GET") {
       try {
+        //DB에서 무기 리스트를 불러옴
         const [weaponList] = await db.query(queries.getWeaponList);
 
+        //무기 리스트가 없을 경우 에러 반환
         if (weaponList.length === 0) {
           return new Response(JSON.stringify({ error: "Weapon not found" }), {
             status: 404,
           });
         }
 
+        //정상이면 무기 리스트 반환
         return new Response(JSON.stringify(weaponList), {
           headers: {
             ...corsHeaders,
+            //응답 데이터 타입을 json으로 설정
             "Content-Type": "application/json",
           },
         });
