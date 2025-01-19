@@ -4,20 +4,7 @@
 
 ---
 
-현재 미니게임을 위한 데이터 불러오기 베이스만 쌓아둔 상태 :
-    1. DB 내에 있는 총기 이름을 가져온다.
-    2. 총기 이름 배열 안에서 랜덤하게 총기 이름을 가져온다
-    3. 그 총기 이름으로 다시 Select 구문을 돌려 해당 총기의 데이터를 가져온다.
-    4. 프론트에 해당 데이터를 보여준다.
-
-(localhost:3000/minigame/Weapon) 이 경로임
-하지만 현재 클라우드 데이터센터를 이용하는게 아니라서 로컬로 DB를 만들고 데이터를 집어넣었음으로
-로컬에서 직접 DB를 만들기 전까지는 확인하기 어려울 것임
-DB 접속 관련된건 현재 env파일로 공개되지 않도록 해두었음
-
-퀴즈에 필요한 요소는 더 만들어야하고
-일단 동작만 가능하게 만든 상태임으로 코드에 불필요한건 없는지 예외처리는 제대로 되있는지
-여러 확인이 필요함
+(localhost:3000/minigame/Weapon)
 
 *db와 함께 개발을 진행하려면 "bun run db"를 실행 하면 됨
 
@@ -33,12 +20,33 @@ DB 테이블 및 컬럼을 검토해야함
 퀴즈에 몇문제를 낼지 기회(생명)은 몇으로 할지
 정답의 기준의 경우에 DB에 정답용 테이블을 따로 만들어주어야함, DB에는 없는 정답인데 정답 처리가 될만한 답이 있을경우를 생각해서 오류 신고 / 정답 추가 같은 유저의 의견을 수용하고 처리 할 공간 및 테이블이 필요할듯
 추후에 관통력에 비례해 관통 가능한 방탄등급에 대한 참조 테이블도 필요할듯
+사용 할 저작권에 문제없는 폰트나 아이콘도 찾아야함 (Font Awesome, DaFont, Google Fonts, 눈누, 게임사 무료 폰트)
+다크모드 <-> 라이트모드
+백그라운드에 재생할 오디오 필요
+
+
+## Font
+### English
+
+(https://fonts.google.com/specimen/Inter/license?query=inter) Inter 폰트
+(https://fonts.google.com/specimen/Source+Sans+3/license?query=Source+Sans+Pro) Source Sans 3 폰트
+(https://fonts.google.com/specimen/Montserrat/license?query=Montserrat) Montserrat 폰트 
+
+### Common
+
+(https://noonnu.cc/font_page/937) 디자인 폰트로 올드한 느낌 내기 가능
+(https://noonnu.cc/font_page/92) 코딩체로 모던한 느낌은 낼만 할지도
+(https://noonnu.cc/font_page/659) 육군체로 딱딱한 느낌
+(https://noonnu.cc/font_page/1329) 테두리가 갈려있는 폰트인데 알게 모르게 정도의 디자인이라 괜찮은듯 
+(https://noonnu.cc/font_page/1037) 위의 폰트와 비슷한데 크랙이 가있는 디자인임
+
 
 ## Before Publishing
 
 server.js Access-Control-Allow-Origin 필요한 경로로만 설정 현재 *로 되어있어서 보안에 취약
 혹시나 모를 디도스 방지를 위해 동일 위치 접속 시 일정 시간동안 일정 횟수만 접속 가능하게 만들기
 없는 경로의 URL이나 허용되지 않은 경로의 URL에 접속 시 보여줄 페이지 필요(현재 공백의 화면이 출력됨)
+
 
 ## 미니게임
 
