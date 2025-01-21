@@ -4,18 +4,16 @@ function Minigame() {
   return (
     <>
       <div
+        className="center-column"
         style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          color: "white",
           width: "100%",
-          height: "100%",
+          height: "100%"
         }}
       >
         <h1>Here is a Minigame Page!</h1>
+        <Menu />
       </div>
-      <Menu />
+      
     </>
   );
 }

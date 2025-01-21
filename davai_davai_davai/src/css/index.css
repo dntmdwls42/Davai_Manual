@@ -18,6 +18,10 @@ button {
   color: white;
 }
 
+a {
+  text-decoration: none;
+}
+
 #root {
   height: 100vh;
   width: 100vw;

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import Background from "./Background";
 import "../css/app.css";
 
@@ -41,8 +43,19 @@ function App() {
         </div>
 
         <div className="main-btn-container">
-          <button className="main-btn">미니 게임</button>
-          <button className="main-btn">총기 문제</button>
+          <button className="main-btn">
+            <Link to={`/Minigame`} style={{ color: "white", margin: "10px" }}>
+              미니게임
+            </Link>
+          </button>
+          <button className="main-btn">
+            <Link
+              to={`/Minigame/Weapon`}
+              style={{ color: "white", margin: "10px" }}
+            >
+              총기 문제
+            </Link>
+          </button>
           <button className="main-btn">Unknown</button>
         </div>
       </div>

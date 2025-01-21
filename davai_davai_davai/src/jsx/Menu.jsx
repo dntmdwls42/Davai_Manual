@@ -27,7 +27,7 @@ function Menu() {
         {/* 선택한 문제 갯수로 Weapon 페이지로 이동 */}
         <Link
           to={`/Minigame/Weapon?number=${quizNumber}`}
-          style={{ color: "white", margin: "10px" }}
+          style={{ margin: "10px" }}
         >
           문제 시작
         </Link>
