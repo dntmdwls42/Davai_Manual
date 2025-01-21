@@ -6,7 +6,7 @@
   background-image: url("./image/Background.png");
   background-size: cover;
   background-repeat: no-repeat;
-  filter: blur(10px);
+  filter: blur(4px);
   transform: scale(1.1);
   z-index: -99;
 }

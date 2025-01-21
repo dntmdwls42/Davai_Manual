@@ -1,5 +1,5 @@
 import Background from "./Background";
-import "./css/app.css";
+import "../css/app.css";
 
 // function App() {
 //   const [count, setCount] = React.useState(0);
@@ -41,9 +41,9 @@ function App() {
         </div>
 
         <div className="main-btn-container">
-          <button className="main-btn">Button 1</button>
-          <button className="main-btn">Button 2</button>
-          <button className="main-btn">Button 3</button>
+          <button className="main-btn">미니 게임</button>
+          <button className="main-btn">총기 문제</button>
+          <button className="main-btn">Unknown</button>
         </div>
       </div>
     </>
