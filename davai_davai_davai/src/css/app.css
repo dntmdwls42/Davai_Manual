@@ -2,7 +2,6 @@
 @import "font.css";
 
 .title-container {
-  color: white;
   padding-top: 50px;
   font-family: "FUNFLOWSURVIVORKR", sans-serif;
 }
@@ -35,7 +34,8 @@
 .main-btn {
   padding: 10px 30px;
   margin: 33px 0;
-  font-size: 32px;
+  font-size: 40px;
+  font-weight: 100;
   position: relative;
   overflow: hidden;
   z-index: 1;
@@ -45,5 +45,4 @@
   border-radius: 11px;
   background-color: rgba(255, 255, 255, 0.2);
   transform: scale(1.07);
-  font-weight: 500;
 }

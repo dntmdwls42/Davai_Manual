@@ -101,50 +101,58 @@ function Weapon() {
 
   if (life < 0 || quizCount >= maxQuizCount) {
     return (
-      <div>
-        <h3>
-          {life < 0 ? "모든 체력을 소모하였습니다." : "모든 문제를 푸셨습니다."}
-        </h3>
-        <h4>총 문제 수 : {maxQuizCount}</h4>
-        <h4>푼 문제 수 : {life < 0 ? quizCount + 1 : quizCount}</h4>
-        <h4>맞춘 문제 수 : {score}</h4>
-        <h4>남은 생명 : {life < 0 ? 0 : life}</h4>
-        <button onClick={handleRestart}>다시 시작하기</button>
-      </div>
+      <>
+        <div className="page-container">
+          <h3>
+            {life < 0
+              ? "모든 체력을 소모하였습니다."
+              : "모든 문제를 푸셨습니다."}
+          </h3>
+          <h4>총 문제 수 : {maxQuizCount}</h4>
+          <h4>푼 문제 수 : {life < 0 ? quizCount + 1 : quizCount}</h4>
+          <h4>맞춘 문제 수 : {score}</h4>
+          <h4>남은 생명 : {life < 0 ? 0 : life}</h4>
+          <button onClick={handleRestart}>다시 시작하기</button>
+        </div>
+      </>
     );
   }
 
   return (
-    <div>
-      <h3>
-        {quizCount + 1}. 총기 이름 : {weapon.Weapon_Name}
-      </h3>
+    <>
+      <div className="page-container">
+        <div>
+          <h3>
+            {quizCount + 1}. 총기 이름 : {weapon.Weapon_Name}
+          </h3>
 
-      <form onSubmit={handleSubmit}>
-        <div>이 총기의 이름은 무엇인가요?</div>
-        <input
-          type="text"
-          value={userInput}
-          onChange={handleInputChange}
-          disabled={isSubmitted}
-          placeholder="총기 이름 입력"
-        />
-        <button type="submit" disabled={isSubmitted}>
-          제출
-        </button>
-      </form>
+          <form onSubmit={handleSubmit}>
+            <div>이 총기의 이름은 무엇인가요?</div>
+            <input
+              type="text"
+              value={userInput}
+              onChange={handleInputChange}
+              disabled={isSubmitted}
+              placeholder="총기 이름 입력"
+            />
+            <button type="submit" disabled={isSubmitted}>
+              제출
+            </button>
+          </form>
 
-      {message && <div>{message}</div>}
+          {message && <div>{message}</div>}
 
-      <h4>
-        현재 점수 : {score} | 현재 체력 : {life}
-      </h4>
-      <h4>총 문제 수 : {maxQuizCount}</h4>
+          <h4>
+            현재 점수 : {score} | 현재 체력 : {life}
+          </h4>
+          <h4>총 문제 수 : {maxQuizCount}</h4>
 
-      <button onClick={handleNext} hidden={!isSubmitted}>
-        다음 퀴즈
-      </button>
-    </div>
+          <button onClick={handleNext} hidden={!isSubmitted}>
+            다음 퀴즈
+          </button>
+        </div>
+      </div>
+    </>
   );
 }
 

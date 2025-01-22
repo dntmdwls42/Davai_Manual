@@ -1,62 +1,30 @@
 import { Link } from "react-router-dom";
 
-import Background from "./Background";
 import "../css/app.css";
-
-// function App() {
-//   const [count, setCount] = React.useState(0);
-
-//   return (
-//     <>
-//       <div>
-//         <a href="https://vite.dev" target="_blank">
-//           <img src={viteLogo} className="logo" alt="Vite logo" />
-//         </a>
-//         <a href="https://react.dev" target="_blank">
-//           <img src={reactLogo} className="logo react" alt="React logo" />
-//         </a>
-//       </div>
-//       <h1>Vite + React</h1>
-//       <div className="card">
-//         <button onClick={() => setCount((count) => count + 1)}>
-//           count is {count}
-//         </button>
-//         <p>
-//           Edit <code>src/App.jsx</code> and save to test HMR
-//         </p>
-//       </div>
-//       <p className="read-the-docs">
-//         Click on the Vite and React logos to learn more
-//       </p>
-//     </>
-//   );
-// }
 
 function App() {
   return (
     <>
-      <Background />
       <div id="main-container">
         <div className="title-container center-column">
-          <h1 className="main-title">Davai manual</h1>
-          <h2 className="sub-title">Minigame of EFT</h2>
+          <h1 className="main-title">
+            <Link to={`/`}>Davai manual</Link>
+          </h1>
+          <h2 className="sub-title">
+            <Link to={`/`}>Minigame of EFT</Link>
+          </h2>
         </div>
 
         <div className="main-btn-container">
           <button className="main-btn">
-            <Link to={`/Minigame`} style={{ color: "white", margin: "10px" }}>
-              미니게임
-            </Link>
+            <Link to={`/Minigame`}>총기 문제</Link>
           </button>
           <button className="main-btn">
-            <Link
-              to={`/Minigame/Weapon`}
-              style={{ color: "white", margin: "10px" }}
-            >
-              총기 문제
-            </Link>
+            <Link to={`/`}>Button 2</Link>
           </button>
-          <button className="main-btn">Unknown</button>
+          <button className="main-btn">
+            <Link to={`/`}>Button 3</Link>
+          </button>
         </div>
       </div>
     </>
