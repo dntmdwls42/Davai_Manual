@@ -10,7 +10,7 @@ function Menu() {
 
   return (
     <>
-      <div>
+      <div className="page-container">
         <h1>Minigame Menu</h1>
 
         <div>
