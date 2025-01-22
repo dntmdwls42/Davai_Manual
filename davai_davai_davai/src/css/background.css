@@ -3,7 +3,7 @@
   position: fixed;
   width: 100vw;
   height: 100vh;
-  background-image: url("./image/Background.png");
+  background-image: url("/image/Background.png");
   background-size: cover;
   background-repeat: no-repeat;
   filter: blur(4px);

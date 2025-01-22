@@ -121,13 +121,16 @@ function Weapon() {
   return (
     <>
       <div className="page-container">
-        <div>
-          <h3>
+        <h1>총기 이름 맞추기</h1>
+        <div className="quiz-container center">
+          {/* <h3>
             {quizCount + 1}. 총기 이름 : {weapon.Weapon_Name}
-          </h3>
+          </h3> */}
+          <img src="/image/AK-103.webp"></img>
+        </div>
 
+        <div className="form-container">
           <form onSubmit={handleSubmit}>
-            <div>이 총기의 이름은 무엇인가요?</div>
             <input
               type="text"
               value={userInput}
@@ -135,11 +138,10 @@ function Weapon() {
               disabled={isSubmitted}
               placeholder="총기 이름 입력"
             />
-            <button type="submit" disabled={isSubmitted}>
-              제출
+            <button className="form-btn" type="submit" disabled={isSubmitted}>
+              <span>제출</span>
             </button>
           </form>
-
           {message && <div>{message}</div>}
 
           <h4>
