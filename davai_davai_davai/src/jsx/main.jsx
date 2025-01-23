@@ -6,12 +6,14 @@ import Minigame from "./Minigame";
 import Weapon from "./Weapon";
 import Background from "./Background";
 import AnimationTest from "./AnimationTest";
+import Layout from "./Layout";
 import "../css/index.css";
 import "../css/background.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Router>
     <Background />
+    <Layout />
     <Routes>
       <Route path="/" element={<App />}></Route>
       <Route path="/Minigame" element={<Minigame />}></Route>
