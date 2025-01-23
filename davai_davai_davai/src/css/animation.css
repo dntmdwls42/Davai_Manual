@@ -1,0 +1,32 @@
+.tile-container {
+  cursor: pointer;
+  flex-wrap: wrap;
+}
+
+.tile-box {
+  perspective: 250px;
+}
+
+.tile {
+  width: 100px;
+  height: 100px;
+  background-color: aquamarine;
+  transform-origin: center;
+  transform-style: preserve-3d;
+  transition: transform 0.45s ease-out;
+  margin: 1px;
+}
+
+.tile::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: blueviolet;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+}
+
+.tile.flipped {
+  transform: rotate3d(-1, 1, 0, 180deg);
+}

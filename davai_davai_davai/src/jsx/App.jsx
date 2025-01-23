@@ -29,7 +29,7 @@ function App() {
             <Link to={`/`}>Button 2</Link>
           </button>
           <button className="main-btn">
-            <Link to={`/`}>Button 3</Link>
+            <Link to={`/animationTest`}>애니메이션 테스트</Link>
           </button>
         </div>
       </div>

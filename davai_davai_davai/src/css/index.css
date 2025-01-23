@@ -7,6 +7,7 @@
 body {
   overflow: hidden;
   user-select: none;
+  box-sizing: border-box;
   color: white;
   font-family: "NEXON Lv1 Gothic OTF", "NanumGothic";
 }

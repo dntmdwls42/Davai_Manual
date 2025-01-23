@@ -5,6 +5,7 @@ import App from "./App";
 import Minigame from "./Minigame";
 import Weapon from "./Weapon";
 import Background from "./Background";
+import AnimationTest from "./AnimationTest";
 import "../css/index.css";
 import "../css/background.css";
 
@@ -15,6 +16,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <Route path="/" element={<App />}></Route>
       <Route path="/Minigame" element={<Minigame />}></Route>
       <Route path="/Minigame/Weapon" element={<Weapon />}></Route>
+      <Route path="/AnimationTest" element={<AnimationTest />}></Route>
     </Routes>
   </Router>,
 );
