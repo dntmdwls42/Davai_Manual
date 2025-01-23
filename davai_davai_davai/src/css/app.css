@@ -17,12 +17,6 @@
   font-size: 30px;
 }
 
-#main-container {
-  height: 100%;
-  width: 100%;
-  margin: 0 auto;
-}
-
 .main-btn-container {
   display: flex;
   flex-direction: column;

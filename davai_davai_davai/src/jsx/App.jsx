@@ -11,7 +11,7 @@ function App() {
 
   return (
     <>
-      <div id="main-container">
+      <div id="main-container" className="page-container">
         <div className="title-container center-column">
           <h1 className="main-title">
             <Link to={`/`}>Davai manual</Link>
