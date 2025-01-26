@@ -23,10 +23,10 @@ function App() {
 
         <div className="main-btn-container">
           <button className="main-btn">
-            <Link to={`/Minigame`}>총기 문제</Link>
+            <Link to={`/Minigame`}>문제 풀이</Link>
           </button>
           <button className="main-btn">
-            <Link to={`/`}>Button 2</Link>
+            <Link to={`/Minigame/Weapon`}>총기 문제</Link>
           </button>
           <button className="main-btn">
             <Link to={`/animationTest`}>애니메이션 테스트</Link>
