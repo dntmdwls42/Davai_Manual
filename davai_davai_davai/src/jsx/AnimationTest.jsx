@@ -23,7 +23,7 @@ function AnimationTest() {
         ...prev,
         [id]: false,
       }));
-    }, 600);
+    }, 3500);
 
     //타이머를 타일별로 저장
     setFlippedTiles((prev) => ({
@@ -34,7 +34,6 @@ function AnimationTest() {
 
   const rows = 7;
   const columns = 15;
-  const tileSize = 100;
 
   return (
     <>

@@ -17,8 +17,11 @@
 .tile {
   width: 100px;
   height: 100px;
-  background-color: aquamarine;
-  transform-origin: center;
+  background-color: var(--black-color);
+  background-image: url("../../public/image/Background.webp");
+  background-size: 1500px 700px;
+  background-position: calc(-100px * var(--col)) calc(-100px * var(--row));
+  transform-origin: bottom left;
   transform-style: preserve-3d;
   transition: transform 0.45s ease-out;
   margin: 1px;
@@ -30,7 +33,7 @@
   width: 100%;
   height: 100%;
   background-color: blueviolet;
-  background-image: url("../../public/image/Background.webp");
+  background-image: url("../../public/image/Background-Flipped.webp");
   background-size: 1500px 700px;
   background-position: calc(-100px * var(--col)) calc(-100px * var(--row));
   backface-visibility: hidden;
@@ -39,5 +42,8 @@
 
 .tile.flipped {
   transform: rotate3d(-1, 1, 0, 180deg);
-  transform: rotateY(180deg);
+}
+
+.tile.flipped::after {
+  transform: rotate3d(1, -1, 0, 180deg);
 }
