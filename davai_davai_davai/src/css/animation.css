@@ -1,6 +1,28 @@
+@keyframes flipAnimation {
+  0% {
+  }
+
+  100% {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@keyframes unflipAnimation {
+  0% {
+    width: 100px;
+    height: 100px;
+  }
+
+  100% {
+    width: 98px;
+    height: 98px;
+  }
+}
+
 .animation-container {
-  width: 1600px;
-  margin-top: 100px;
+  width: 1620px;
+  margin-top: 30px;
 }
 
 .tile-container {
@@ -11,20 +33,24 @@
 }
 
 .tile-box {
+  width: 100px;
+  height: 100px;
   perspective: 250px;
 }
 
 .tile {
-  width: 100px;
-  height: 100px;
+  position: relative;
+  width: 98px;
+  height: 98px;
+  margin: 1px;
   background-color: var(--black-color);
   background-image: url("../../public/image/Background.webp");
-  background-size: 1500px 700px;
+  background-size: 1600px 900px;
   background-position: calc(-100px * var(--col)) calc(-100px * var(--row));
-  transform-origin: bottom left;
   transform-style: preserve-3d;
   transition: transform 0.45s ease-out;
-  margin: 1px;
+  backface-visibility: hidden;
+  will-change: transform;
 }
 
 .tile::after {
@@ -32,12 +58,14 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: blueviolet;
+  background-color: var(--black-color);
   background-image: url("../../public/image/Background-Flipped.webp");
-  background-size: 1500px 700px;
+  background-size: 1600px 900px;
   background-position: calc(-100px * var(--col)) calc(-100px * var(--row));
   backface-visibility: hidden;
   transform: rotateY(180deg);
+  transition: transform 0.45s ease-out;
+  will-change: transform;
 }
 
 .tile.flipped {
@@ -45,5 +73,13 @@
 }
 
 .tile.flipped::after {
-  transform: rotate3d(1, -1, 0, 180deg);
+  transform: rotate3d(-1, 1, 0, 180deg);
+}
+
+.tile.unflip-animation {
+  animation: unflipAnimation 0.45s cubic-bezier(0.79, 0.81, 1, 0.4) forwards;
+}
+
+.tile.flip-animation::after {
+  animation: flipAnimation 0.45s cubic-bezier(0.79, 0.81, 1, 0.4) forwards;
 }
