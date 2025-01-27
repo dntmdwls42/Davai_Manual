@@ -10,6 +10,7 @@ body {
   color: white;
   font-family: "NEXON Lv1 Gothic OTF", "NanumGothic";
   overflow-y: hidden;
+  background-color: var(--black-color);
 }
 
 button {
