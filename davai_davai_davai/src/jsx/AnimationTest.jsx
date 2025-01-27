@@ -32,26 +32,37 @@ function AnimationTest() {
     }));
   };
 
+  const rows = 7;
+  const columns = 15;
+  const tileSize = 100;
+
   return (
     <>
       <div className="page-container">
-        <h1>Animation Test</h1>
-
         <div className="animation-container center">
           <div className="tile-container center">
             {/* 108개의 타일을 생성하고 key를 부여 */}
-            {Array.from({ length: 108 }, (_, id) => (
-              <div
-                key={id}
-                className={"tile-box"}
-                onMouseEnter={() => handleMouseEnter(id)}
-                onMouseLeave={() => handleMouseLeave(id)}
-              >
+            {Array.from({ length: rows * columns }, (_, id) => {
+              const row = Math.floor(id / columns);
+              const col = id % columns;
+
+              return (
                 <div
-                  className={`tile ${flippedTiles[id] ? "flipped" : ""}`}
-                ></div>
-              </div>
-            ))}
+                  key={id}
+                  className={"tile-box"}
+                  onMouseEnter={() => handleMouseEnter(id)}
+                  onMouseLeave={() => handleMouseLeave(id)}
+                >
+                  <div
+                    className={`tile ${flippedTiles[id] ? "flipped" : ""}`}
+                    style={{
+                      "--row": row,
+                      "--col": col,
+                    }}
+                  ></div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
