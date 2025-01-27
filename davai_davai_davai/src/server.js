@@ -49,11 +49,11 @@ Bun.serve({
     if (url.pathname === "/api/weapon" && req.method === "GET") {
       try {
         //DB에서 무기 리스트를 불러옴
-        const [weaponList] = await db.query(queries.getWeaponList);
+        const [weaponList] = await db.query(queries.getWeaponName);
 
         //무기 리스트가 없을 경우 에러 반환
         if (weaponList.length === 0) {
-          return new Response(JSON.stringify({ error: "Weapon not found" }), {
+          return new Response(JSON.stringify({ error: "Data not found" }), {
             status: 404,
           });
         }
@@ -63,6 +63,39 @@ Bun.serve({
           headers: {
             ...corsHeaders,
             //응답 데이터 타입을 json으로 설정
+            "Content-Type": "application/json",
+          },
+        });
+      } catch (err) {
+        console.error("Database query error : ", err);
+        return new Response(
+          JSON.stringify({ error: "Internal Server Error" }),
+          {
+            status: 500,
+            headers: {
+              ...corsHeaders,
+              "Content-Type": "application/json",
+            },
+          },
+        );
+      }
+    }
+
+    if (url.pathname === "/api/weaponAndCaliber" && req.method === "GET") {
+      try {
+        const [weaponAndCaliberList] = await db.query(
+          queries.getWeaponNameAndCaliber,
+        );
+
+        if (weaponAndCaliberList.length === 0) {
+          return new Response(JSON.stringify({ error: "Data not found" }), {
+            status: 404,
+          });
+        }
+
+        return new Response(JSON.stringify(weaponAndCaliberList), {
+          headers: {
+            ...corsHeaders,
             "Content-Type": "application/json",
           },
         });
