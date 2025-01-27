@@ -6,59 +6,59 @@ function Weapon() {
   const queryParams = new URLSearchParams(location.search);
   const quizNumber = parseInt(queryParams.get("number"), 10) || 5;
 
-  const [weaponList, setWeaponList] = React.useState([]);
-  const [weapon, setWeapon] = React.useState(null);
+  const [dataList, setDataList] = React.useState([]);
+  const [data, setData] = React.useState(null);
   const [submittedWeapons, setSubmittedWeapons] = React.useState([]);
   const [score, setScore] = React.useState(0);
   const [life, setLife] = React.useState(3);
   const [quizCount, setQuizCount] = React.useState(0);
-  //minigame 페이지에서 quizNumber를 URL 파라미터로 받아옴
+  // minigame 페이지에서 quizNumber를 URL 파라미터로 받아옴
   const [maxQuizCount] = React.useState(quizNumber);
   const [userInput, setUserInput] = React.useState("");
-  //제출 시 버튼 비활성화 및 다음 문제 버튼 출력
+  // 제출 시 버튼 비활성화 및 다음 문제 버튼 출력
   const [isSubmitted, setIsSubmitted] = React.useState(false);
   const [message, setMessage] = React.useState("");
 
-  //무기 리스트를 불러옴
-  const fetchWeaponList = async () => {
+  // data = Weapon_Name
+  const fetchDataList = async () => {
     try {
       const response = await fetch("http://localhost:8000/api/weapon");
       if (!response.ok) throw new Error("Failed to fetch weapon list");
 
       const data = await response.json();
 
-      setWeaponList(data);
+      setDataList(data);
     } catch (err) {
       console.error(err);
       setMessage("Error : 데이터를 불러오는데 실패했습니다.");
     }
   };
 
-  //무기 리스트에서 이미 출제한 무기를 제외하고 무기를 랜덤으로 불러옴
+  // 무기 리스트에서 이미 출제한 무기를 제외하고 무기를 랜덤으로 불러옴
   const fetchRandomWeapon = () => {
-    const availableWeapons = weaponList.filter(
-      (weapon) => !submittedWeapons.includes(weapon.Weapon_Name),
+    const availableWeapons = dataList.filter(
+      (data) => !submittedWeapons.includes(data.Weapon_Name),
     );
 
-    //난수를 이용하여 무기를 랜덤으로 불러옴
+    // 난수를 이용하여 무기를 랜덤으로 불러옴
     const randomWeapon =
       availableWeapons[Math.floor(Math.random() * availableWeapons.length)];
 
-    setWeapon(randomWeapon);
+    setData(randomWeapon);
     setIsSubmitted(false);
     setUserInput("");
     setMessage("");
   };
 
   React.useEffect(() => {
-    fetchWeaponList();
+    fetchDataList();
   }, []);
 
-  //무기 리스트가 업데이트 되면 무기를 불러옴
+  // 무기 리스트가 업데이트 되면 무기를 불러옴
   React.useEffect(() => {
-    if (weaponList.length > 0) fetchRandomWeapon();
+    if (dataList.length > 0) fetchRandomWeapon();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [weaponList]);
+  }, [dataList]);
 
   const handleInputChange = (e) => {
     setUserInput(e.target.value);
@@ -67,10 +67,10 @@ function Weapon() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    //사용자 입력값과 정답 확인 및 비교를 위한 전처리
+    // 사용자 입력값과 정답 확인 및 비교를 위한 전처리
     if (
       userInput.trim().replace(/\s+/g, "").replace(/-/g, "").toLowerCase() ===
-      weapon.Weapon_Name.trim()
+      data.Weapon_Name.trim()
         .replace(/\s+/g, "")
         .replace(/-/g, "")
         .toLowerCase()
@@ -78,12 +78,12 @@ function Weapon() {
       setScore((score) => score + 1);
       setMessage("정답입니다! 점수가 1점 증가했습니다.");
     } else {
-      setMessage(`틀렸습니다. 정답은 ${weapon.Weapon_Name}입니다.`);
+      setMessage(`틀렸습니다. 정답은 ${data.Weapon_Name}입니다.`);
       setLife((life) => life - 1);
     }
 
     setIsSubmitted(true);
-    setSubmittedWeapons((prev) => [...prev, weapon?.Weapon_Name]);
+    setSubmittedWeapons((prev) => [...prev, data?.Weapon_Name]);
   };
 
   const handleNext = () => {
@@ -95,7 +95,7 @@ function Weapon() {
     window.location.reload();
   };
 
-  if (!weapon) {
+  if (!data) {
     return <div>Loading...</div>;
   }
 
@@ -124,7 +124,7 @@ function Weapon() {
         <h1>총기 이름 맞추기</h1>
         <div className="quiz-container center">
           {/* <h3>
-            {quizCount + 1}. 총기 이름 : {weapon.Weapon_Name}
+            {quizCount + 1}. 총기 이름 : {data.Weapon_Name}
           </h3> */}
           <img src="/image/AK-103.webp"></img>
         </div>
