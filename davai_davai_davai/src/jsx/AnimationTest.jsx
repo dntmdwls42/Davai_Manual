@@ -39,7 +39,7 @@ function AnimationTest() {
     if (isFlipped) {
       setTimeout(() => {
         setIsFlipped(!isFlipped);
-      }, 550);
+      }, 270);
     }
 
     setTimeout(() => {
@@ -70,7 +70,13 @@ function AnimationTest() {
     <>
       <div className="page-container">
         <div className="animation-container center" onClick={handleClick}>
-          <div className="tile-container center">
+          <div
+            className="tile-container"
+            style={{
+              gridTemplateRows: `repeat(${rows}, 100px)`,
+              gridTemplateColumns: `repeat(${columns}, 100px)`,
+            }}
+          >
             {/* 108개의 타일을 생성하고 key를 부여 */}
             {Array.from({ length: rows * columns }, (_, id) => {
               const row = Math.floor(id / columns);
