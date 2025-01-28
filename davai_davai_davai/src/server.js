@@ -84,7 +84,7 @@ Bun.serve({
     if (url.pathname === "/api/weaponAndCaliber" && req.method === "GET") {
       try {
         const [weaponAndCaliberList] = await db.query(
-          queries.getWeaponNameAndCaliber,
+          queries.getWeaponNameAndCaliberNotGr,
         );
 
         if (weaponAndCaliberList.length === 0) {

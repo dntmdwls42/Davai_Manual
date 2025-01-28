@@ -2,6 +2,7 @@
   "getWeaponAll": "SELECT * FROM Weapon",
   "getWeaponName": "SELECT Weapon_Name FROM Weapon",
   "getWeaponNameAndCaliber": "SELECT Weapon_Name, Weapon_Caliber FROM Weapon",
+  "getWeaponNameAndCaliberNotGr": "SELECT Weapon_Name, Weapon_Caliber FROM Weapon WHERE Weapon_Type != 'Gr'",
   "getWeaponInfoFromWeaponName": "SELECT Weapon_Type Weapon_Caliber Weapon_Fire_Rate FROM Weapon WHERE Weapon_Name = ?",
   "getAmmoAll": "SELECT * FROM Ammo",
   "getAmmoName": "SELECT Ammo_Name FROM Ammo",

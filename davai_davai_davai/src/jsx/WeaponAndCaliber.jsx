@@ -91,6 +91,9 @@ function WeaponAndCaliber() {
   const handleNext = () => {
     setQuizCount((count) => count + 1);
     fetchRandomWeapon();
+    setTimeout(() => {
+      document.querySelector("#user-input").focus();
+    }, 0);
   };
 
   const handleRestart = () => {
@@ -120,6 +123,13 @@ function WeaponAndCaliber() {
     );
   }
 
+  if (isSubmitted) {
+    //Timeout을 0ms로 줘도 focus가 되지만 Timeout을 주지 않으면 focus가 안됨
+    setTimeout(() => {
+      document.querySelector("#next-btn").focus();
+    }, 0);
+  }
+
   return (
     <>
       <div className="page-container">
@@ -135,11 +145,13 @@ function WeaponAndCaliber() {
         <div className="form-container">
           <form onSubmit={handleSubmit}>
             <input
+              id="user-input"
               type="text"
               value={userInput}
               onChange={handleInputChange}
               disabled={isSubmitted}
               placeholder="총기 이름 입력"
+              autoFocus
             />
             <button className="form-btn" type="submit" disabled={isSubmitted}>
               <span>제출</span>
@@ -152,7 +164,7 @@ function WeaponAndCaliber() {
           </h4>
           <h4>총 문제 수 : {maxQuizCount}</h4>
 
-          <button onClick={handleNext} hidden={!isSubmitted}>
+          <button id="next-btn" onClick={handleNext} hidden={!isSubmitted}>
             다음 퀴즈
           </button>
         </div>
