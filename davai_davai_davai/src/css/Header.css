@@ -7,6 +7,7 @@ header {
 header svg {
   width: 50px;
   height: 50px;
+  cursor: pointer;
 }
 
 .header__icon {
@@ -18,23 +19,31 @@ header svg {
 
 .header__icon--volumecontrol {
   display: flex;
+  align-items: center;
+  background-color: aqua;
+  border-radius: 20px;
+  padding: 0 10px;
 }
 
-input [type="range"] {
-  width: 100px;
-  height: 10px;
+input[type="range"] {
+  width: 150px;
+  height: 15px;
+  border-radius: 20px;
+  background: none;
   -webkit-appearance: none;
 }
 
-input [type="range"]::-webkit-slider-runnable-track {
-  height: 50px;
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 15px;
   background-color: blueviolet;
+  border-radius: 20px;
   -webkit-appearance: none;
 }
 
-input [type="range"]::-webkit-slider-thumb {
-  width: 20px;
-  height: 20px;
+input[type="range"]::-webkit-slider-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
   background-color: white;
   cursor: pointer;
   -webkit-appearance: none;
