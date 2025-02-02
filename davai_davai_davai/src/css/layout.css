@@ -17,7 +17,7 @@
   background-color: var(--black-color);
 }
 
-.sidebar_icon {
+.sidebar__icon {
   position: absolute;
   background-color: #ffffff33;
   right: -30px;
@@ -30,12 +30,12 @@
   z-index: -1;
 }
 
-.sidebar_icon svg {
+.sidebar__icon svg {
   width: 30px;
   height: 30px;
 }
 
-.sidebar_content a {
+.sidebar__content a {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,7 +43,7 @@
   height: 100%;
 }
 
-.sidebar_content ul {
+.sidebar__content ul {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -52,7 +52,7 @@
   margin: 15px 0;
 }
 
-.sidebar_content ul li {
+.sidebar__content ul li {
   display: flex;
   position: relative;
   align-items: center;
@@ -64,7 +64,7 @@
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-.sidebar_content ul li::after {
+.sidebar__content ul li::after {
   content: "";
   position: absolute;
   bottom: -20px;
@@ -73,7 +73,7 @@
   cursor: initial;
 }
 
-.sidebar_content ul li:last-child::after {
+.sidebar__content ul li:last-child::after {
   border: none;
 }
 
