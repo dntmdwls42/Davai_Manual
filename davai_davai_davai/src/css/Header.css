@@ -5,8 +5,8 @@ header {
 }
 
 header svg {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
 }
 
@@ -20,7 +20,6 @@ header svg {
 .header__icon--volumecontrol {
   display: flex;
   align-items: center;
-  background-color: aqua;
   border-radius: 20px;
   padding: 0 10px;
 }
@@ -35,9 +34,9 @@ input[type="range"] {
 
 input[type="range"]::-webkit-slider-runnable-track {
   height: 15px;
-  background-color: blueviolet;
   border-radius: 20px;
   -webkit-appearance: none;
+  
 }
 
 input[type="range"]::-webkit-slider-thumb {
