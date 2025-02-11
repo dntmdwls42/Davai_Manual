@@ -2,8 +2,10 @@ import { Link } from "react-router-dom";
 import React from "react";
 
 const Header = () => {
+  const [defaultVolume, setDefaultVolume] = React.useState(0.3);
   const [volume, setVolume] = React.useState(0.3);
   const [lastVolume, setLastVolume] = React.useState(0.3);
+  const [clickVolume, setClickVolume] = React.useState(0.3);
   const [isMuted, setIsMuted] = React.useState(false);
 
   const toggleMute = () => {
@@ -18,6 +20,24 @@ const Header = () => {
     });
   };
 
+  // const toggleMute = () => {
+  //   setIsMuted((prev) => !prev);
+  // };
+
+  // React.useEffect(() => {
+  //   if (isMuted) {
+  //     setLastVolume(volume);
+  //     setVolume(0);
+  //   }
+  //   if (!isMuted) {
+  //     if (lastVolume === 0) {
+  //       setVolume(defaultVolume);
+  //       return;
+  //     }
+  //     setVolume(lastVolume);
+  //   }
+  // }, [isMuted]);
+
   const handleVolumeChange = (event) => {
     const newVolume = event.target.valueAsNumber;
     setVolume(newVolume);
@@ -28,6 +48,25 @@ const Header = () => {
       setLastVolume(newVolume);
     }
   };
+
+  // React.useEffect(() => {
+  //   if (volume === 0) {
+  //     setIsMuted(true);
+  //   } else {
+  //     setIsMuted(false);
+  //     setLastVolume(volume);
+  //   }
+  // }, [volume]);
+
+  // const setVolumeOnMouseDown = (event) => {
+  //   setClickVolume(event.target.valueAsNumber);
+  // };
+
+  // const setVolumeOnMouseUp = (event) => {
+  //   if (event.target.valueAsNumber === 0) {
+  //     setLastVolume(clickVolume);
+  //   }
+  // };
 
   return (
     <header>
@@ -64,9 +103,11 @@ const Header = () => {
             max="1"
             value={volume}
             onChange={handleVolumeChange}
+            // onMouseDown={setVolumeOnMouseDown}
+            // onMouseUp={setVolumeOnMouseUp}
             style={{
               background: `linear-gradient(to right,rgb(117, 117, 117) ${volume * 100}%, 
-rgba(33, 33, 33, 0.7) ${volume * 100}%)`,
+var(--black-color) ${volume * 100}%)`,
             }}
           />
         </div>
