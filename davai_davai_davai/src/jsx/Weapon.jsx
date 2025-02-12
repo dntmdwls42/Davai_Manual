@@ -162,7 +162,7 @@ function Weapon() {
           </h4>
           <h4>총 문제 수 : {maxQuizCount}</h4>
 
-          <button onClick={handleNext} hidden={!isSubmitted}>
+          <button id="next-btn" onClick={handleNext} hidden={!isSubmitted}>
             다음 퀴즈
           </button>
         </div>
