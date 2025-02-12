@@ -134,10 +134,10 @@ function Weapon() {
       <div className="page-container">
         <h1>총기 이름 맞추기</h1>
         <div className="quiz-container center">
-          {/* <h3>
+          <h3>
             {quizCount + 1}. 총기 이름 : {data.Weapon_Name}
-          </h3> */}
-          <img src="/image/AK-103.webp"></img>
+          </h3>
+          {/* <img src="/image/AK-103.webp"></img> */}
         </div>
 
         <div className="form-container">
