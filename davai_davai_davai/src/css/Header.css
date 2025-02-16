@@ -26,23 +26,24 @@ header svg {
 
 input[type="range"] {
   width: 150px;
-  height: 15px;
+  height: 10px;
   border-radius: 20px;
   background: none;
   -webkit-appearance: none;
 }
 
 input[type="range"]::-webkit-slider-runnable-track {
-  height: 15px;
+  height: 10px;
   border-radius: 20px;
   -webkit-appearance: none;
-  
 }
 
 input[type="range"]::-webkit-slider-thumb {
-  width: 15px;
-  height: 15px;
-  border-radius: 15px;
+  position: relative;
+  bottom: 4px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
   background-color: white;
   cursor: pointer;
   -webkit-appearance: none;

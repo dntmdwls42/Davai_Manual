@@ -9,34 +9,22 @@ const Header = () => {
   const [isMuted, setIsMuted] = React.useState(false);
 
   const toggleMute = () => {
-    setIsMuted((prev) => {
-      if (!prev) {
-        setLastVolume(volume); // 음소거 전 볼륨 값 저장
-        setVolume(0); // 음소거 시 볼륨을 0으로 설정
-      } else {
-        setVolume(lastVolume); // 음소거 해제 시 기본 볼륨 값으로 복구 (필요에 따라 변경 가능)
-      }
-      return !prev;
-    });
+    setIsMuted((prev) => !prev);
   };
 
-  // const toggleMute = () => {
-  //   setIsMuted((prev) => !prev);
-  // };
-
-  // React.useEffect(() => {
-  //   if (isMuted) {
-  //     setLastVolume(volume);
-  //     setVolume(0);
-  //   }
-  //   if (!isMuted) {
-  //     if (lastVolume === 0) {
-  //       setVolume(defaultVolume);
-  //       return;
-  //     }
-  //     setVolume(lastVolume);
-  //   }
-  // }, [isMuted]);
+  React.useEffect(() => {
+    if (isMuted) {
+      setLastVolume(volume);
+      setVolume(0);
+    }
+    if (!isMuted) {
+      if (lastVolume === 0) {
+        setVolume(defaultVolume);
+        return;
+      }
+      setVolume(lastVolume);
+    }
+  }, [isMuted]);
 
   const handleVolumeChange = (event) => {
     const newVolume = event.target.valueAsNumber;
@@ -49,24 +37,15 @@ const Header = () => {
     }
   };
 
-  // React.useEffect(() => {
-  //   if (volume === 0) {
-  //     setIsMuted(true);
-  //   } else {
-  //     setIsMuted(false);
-  //     setLastVolume(volume);
-  //   }
-  // }, [volume]);
+  const setVolumeOnMouseDown = (event) => {
+    setClickVolume(event.target.valueAsNumber);
+  };
 
-  // const setVolumeOnMouseDown = (event) => {
-  //   setClickVolume(event.target.valueAsNumber);
-  // };
-
-  // const setVolumeOnMouseUp = (event) => {
-  //   if (event.target.valueAsNumber === 0) {
-  //     setLastVolume(clickVolume);
-  //   }
-  // };
+  const setVolumeOnMouseUp = (event) => {
+    if (event.target.valueAsNumber === 0) {
+      setLastVolume(clickVolume);
+    }
+  };
 
   return (
     <header>
@@ -103,8 +82,8 @@ const Header = () => {
             max="1"
             value={volume}
             onChange={handleVolumeChange}
-            // onMouseDown={setVolumeOnMouseDown}
-            // onMouseUp={setVolumeOnMouseUp}
+            onMouseDown={setVolumeOnMouseDown}
+            onMouseUp={setVolumeOnMouseUp}
             style={{
               background: `linear-gradient(to right,rgb(117, 117, 117) ${volume * 100}%, 
 var(--black-color) ${volume * 100}%)`,
