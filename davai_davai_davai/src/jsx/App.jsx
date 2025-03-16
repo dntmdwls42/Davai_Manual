@@ -35,7 +35,7 @@ function App() {
         <div className="main-card-container">
           <Link className="main-card__border-fixed" to={`/Minigame`}>
             <div className="main-card__contents">
-              <img src="/image/alive.webp"></img>
+              <img src="/image/USEC-gun-aiming.webp"></img>
               <div className="main-card__text">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
               </div>
@@ -43,7 +43,7 @@ function App() {
           </Link>
           <Link className="main-card__border-fixed" to={`/Minigame/Weapon`}>
             <div className="main-card__contents">
-              <img src="/image/combat_bottom.webp"></img>
+              <img src="/image/Weapon-parts-disassembly.webp"></img>
               <div className="main-card__text">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
               </div>
@@ -51,7 +51,7 @@ function App() {
           </Link>
           <Link className="main-card__border-fixed" to={`/AnimationTest`}>
             <div className="main-card__contents">
-              <img src="/image/alive.webp"></img>
+              <img src="/image/Tarkov-logo.webp"></img>
               <div className="main-card__text">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
               </div>
