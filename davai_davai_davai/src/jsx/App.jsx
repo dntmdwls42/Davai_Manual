@@ -21,18 +21,18 @@ function App() {
           </h2>
         </div>
 
-        {/* <div className="main-btn-container">
-          <button className="main-btn">
-            <Link to={`/Minigame`}>문제 풀이</Link>
-          </button>
-          <button className="main-btn">
-            <Link to={`#`}>듣기 평가(미완성)</Link>
-          </button>
-          <button className="main-btn">
-            <Link to={`/animationTest`}>애니메이션 테스트</Link>
-          </button>
-        </div> */}
         <div className="main-card-container">
+          <div className="main-card-Carousel-Button">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 -960 960 960"
+              width="24px"
+              fill="#1f1f1f"
+            >
+              <path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z" />
+            </svg>
+          </div>
           <Link className="main-card__border-fixed" to={`/Minigame`}>
             <div className="main-card__contents">
               <img src="/image/USEC-gun-aiming.webp"></img>
@@ -57,6 +57,17 @@ function App() {
               </div>
             </div>
           </Link>
+          <div className="main-card-Carousel-Button">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 -960 960 960"
+              width="24px"
+              fill="#1f1f1f"
+            >
+              <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z" />
+            </svg>
+          </div>
         </div>
       </div>
     </>

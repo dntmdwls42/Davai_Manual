@@ -70,3 +70,21 @@
   margin-top: 20px;
   text-align: center;
 }
+
+.main-card-Carousel-Button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+/* 웬만하면 side button의 색상과 동일하게 처리하려는데 어때..? */
+
+/* 여기서 left 버튼과 right 버튼 각각 left는 오른쪽에 margin을 right는
+왼쪽에 margin을 두고 싶은데 어떻게 해야함..? */
+
+/* svg 가 carousel button 의 가운데에 정렬되어 있지 않은 것 같음..
+나중에 확인해볼 것 : (SVG에만 영향을 주려면 어떻게 해야 하더라..? pointer 같은게 있었는데 > 이거였나..?) */
