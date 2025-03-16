@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "../css/Menu.css";
 
 function Menu() {
   const [quizNumber, setQuizNumber] = React.useState(5);
@@ -11,10 +12,11 @@ function Menu() {
   return (
     <>
       <div className="page-container">
-        <h1>Minigame Menu</h1>
+        <h1 className="minigame-menu__title">Minigame Menu</h1>
+        {/* 여기에 총기와 관련된 아이콘 또는 사진 넣기 */}
         <div className="menu-container">
           <div>
-            <label>
+            <label className="mimigame-menu__quiz__selector">
               총기 문제 갯수:
               <select value={quizNumber} onChange={handleNumber}>
                 <option value={5}>5개</option>
@@ -34,7 +36,7 @@ function Menu() {
         </div>
         <div className="menu-container">
           <div>
-            <label>
+            <label className="mimigame-menu__quiz__selector">
               총기 구경 문제 갯수:
               <select value={quizNumber} onChange={handleNumber}>
                 <option value={5}>5개</option>

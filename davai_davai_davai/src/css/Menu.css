@@ -1,0 +1,11 @@
+@import "reset.css";
+
+.minigame-menu__title {
+    font-size: 2rem;
+}
+
+.mimigame-menu__quiz__selector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
