@@ -1,11 +1,29 @@
 @import "reset.css";
 
+.minigame-menu {
+  margin: 3vh 0 3vh 0;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 33rem;
+  width: 30rem;
+  background-color: #1f1f1f;
+  clip-path: inset(1px 1px 1px 1px round var(--global-border-radius));
+}
+
 .minigame-menu__title {
-    font-size: 2rem;
+  color: white;
+  font-size: 2rem;
+  margin: 2rem 0;
 }
 
 .mimigame-menu__quiz__selector {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.minigame-menu__quiz-hint-image {
+  margin: 1.5rem 0;
 }

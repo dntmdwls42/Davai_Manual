@@ -37,7 +37,7 @@ function App() {
             <div className="main-card__contents">
               <img src="/image/USEC-gun-aiming.webp"></img>
               <div className="main-card__text">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <p>총기 구경 맞추기</p>
               </div>
             </div>
           </Link>
@@ -45,7 +45,7 @@ function App() {
             <div className="main-card__contents">
               <img src="/image/Weapon-parts-disassembly.webp"></img>
               <div className="main-card__text">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <p>총기 이름 맞추기</p>
               </div>
             </div>
           </Link>
@@ -53,7 +53,7 @@ function App() {
             <div className="main-card__contents">
               <img src="/image/Tarkov-logo.webp"></img>
               <div className="main-card__text">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <p>애니메이션 테스트</p>
               </div>
             </div>
           </Link>
