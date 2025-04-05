@@ -2,6 +2,11 @@
 
 :root {
   --black-color: #282828;
+  --global-first-ui-color: #1d1e20;
+  --global-second-ui-color: #36383a;
+  --global-selector-top-radius: 16px 16px 3.5px 3.5px;
+  --global-selector-bottom-radius: 3.5px 3.5px 16px 16px;
+  --global-button-padding-size: 12px 28px;
   --global-border-radius: 28px;
 }
 
@@ -9,7 +14,10 @@ body {
   user-select: none;
   box-sizing: border-box;
   color: white;
-  font-family: "NEXON Lv1 Gothic OTF", "NanumGothic";
+  font-family: "Noto Sans KR", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 350;
+  font-style: normal;
   overflow-y: hidden;
   background-color: var(--black-color);
 }
@@ -19,7 +27,10 @@ button {
   background-color: transparent;
   cursor: pointer;
   color: white;
-  font-family: "NEXON Lv1 Gothic OTF", "NanumGothic";
+  font-family: "Noto Sans KR", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
 }
 
 a {

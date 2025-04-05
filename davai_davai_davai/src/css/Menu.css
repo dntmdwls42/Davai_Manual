@@ -1,29 +1,96 @@
 @import "reset.css";
 
+#minigame-container {
+  justify-content: center;
+  position: absolute;
+}
+
 .minigame-menu {
   margin: 3vh 0 3vh 0;
-  padding: 3rem;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  height: 33rem;
-  width: 30rem;
-  background-color: #1f1f1f;
+  height: 650px;
+  width: 450px;
+  background-color: var(--global-first-ui-color);
   clip-path: inset(1px 1px 1px 1px round var(--global-border-radius));
 }
 
 .minigame-menu__title {
   color: white;
-  font-size: 2rem;
-  margin: 2rem 0;
+  font-size: 32px;
+  margin: 32px 0;
 }
 
-.mimigame-menu__quiz__selector {
+.minigame-menu__quiz-selector {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 2px;
+  margin: 3vh 0;
+}
+
+.minigame-menu__quiz-selector__text {
+  margin-bottom: 16px;
+}
+
+.minigame-menu__quiz-type-selector {
+  padding: 10px 48px;
+  background-color: var(--global-second-ui-color);
+  border-radius: var(--global-selector-top-radius);
+  transition: all 0.3s ease-in-out;
+  border: none;
+  color: white;
+  outline: none;
+  appearance: none;
+}
+
+.minigame-menu__quiz-type-selector:hover {
+  background-color: rgba(255, 255, 255, 0.76);
+  transition: all 0.3s ease-in-out;
+  color: var(--black-color);
+  font-weight: 600;
+}
+
+.minigame-menu__quiz-number-selector {
+  padding: 10px 81px;
+  background-color: var(--global-second-ui-color);
+  border-radius: var(--global-selector-bottom-radius);
+  transition: all 0.3s ease-in-out;
+  border: none;
+  color: white;
+  outline: none;
+  appearance: none;
+}
+
+.minigame-menu__quiz-number-selector:hover {
+  background-color: rgba(255, 255, 255, 0.76);
+  transition: all 0.3s ease-in-out;
+  color: var(--black-color);
+  font-weight: 600;
 }
 
 .minigame-menu__quiz-hint-image {
-  margin: 1.5rem 0;
+  clip-path: inset(1px 1px 1px 1px round var(--global-border-radius));
+}
+
+.minigame-menu__quiz-selector__button {
+  display: flex;
+  justify-content: flex-end;
+  background-color: var(--global-second-ui-color);
+  border: none;
+  border-radius: var(--global-border-radius);
+  padding: var(--global-button-padding-size);
+  font-size: 16px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  width: 100%;
+}
+
+.minigame-menu__quiz-selector__button:hover {
+  background-color: rgba(255, 255, 255, 0.76);
+  transition: all 0.3s ease-in-out;
+  color: var(--black-color);
+  font-weight: 900;
 }
