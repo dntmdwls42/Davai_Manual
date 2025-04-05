@@ -1,5 +1,6 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
+import "../css/Minigame.css";
 
 function Weapon() {
   const location = useLocation();
@@ -18,6 +19,8 @@ function Weapon() {
   // 제출 시 버튼 비활성화 및 다음 문제 버튼 출력
   const [isSubmitted, setIsSubmitted] = React.useState(false);
   const [message, setMessage] = React.useState("");
+  // 입력 필드의 focus 상태를 추적하기 위한 state 추가
+  const [isInputFocused, setIsInputFocused] = React.useState(false);
 
   // data = Weapon_Name
   const fetchDataList = async () => {
@@ -62,6 +65,16 @@ function Weapon() {
 
   const handleInputChange = (e) => {
     setUserInput(e.target.value);
+  };
+
+  // 입력 필드 focus 이벤트 핸들러 추가
+  const handleInputFocus = () => {
+    setIsInputFocused(true);
+  };
+
+  // 입력 필드 blur 이벤트 핸들러 추가
+  const handleInputBlur = () => {
+    setIsInputFocused(false);
   };
 
   const handleSubmit = (e) => {
@@ -131,40 +144,67 @@ function Weapon() {
 
   return (
     <>
-      <div className="page-container">
-        <h1>총기 이름 맞추기</h1>
-        <div className="quiz-container center">
-          <h3>
-            {quizCount + 1}. 총기 이름 : {data.Weapon_Name}
-          </h3>
-          {/* <img src="/image/AK-103.webp"></img> */}
-        </div>
-
-        <div className="form-container">
-          <form onSubmit={handleSubmit}>
-            <input
-              id="user-input"
-              type="text"
-              value={userInput}
-              onChange={handleInputChange}
-              disabled={isSubmitted}
-              placeholder="총기 이름 입력"
-              autoFocus
+      <div id="minigame-container" className="page-container">
+        <div className="minigame-quiz">
+          <div className="minigame-quiz__back-button">
+            <Link to={`/`}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="100%"
+                viewBox="0 -960 960 960"
+                width="100%"
+                fill="#e3e3e3"
+              >
+                <path d="M640-80 240-480l400-400 71 71-329 329 329 329-71 71Z" />
+              </svg>
+            </Link>
+          </div>
+          <h1 className="minigame-quiz__title">무기 이름 맞추기</h1>
+          <div className="minigame-quiz__image-container">
+            <img
+              className="minigame-quiz__image"
+              src="/image/Weapons/AK-12_Image.webp"
             />
-            <button className="form-btn" type="submit" disabled={isSubmitted}>
+          </div>
+          <p className="minigame-quiz__description">
+            이미지에 표시된 무기의 이름은 무엇일까요?
+          </p>
+          <div className="minigame-quiz__input-container">
+            <form onSubmit={handleSubmit}>
+              <input
+                className="minigame-quiz__input-form__input"
+                type="text"
+                value={userInput}
+                onChange={handleInputChange}
+                onFocus={handleInputFocus}
+                onBlur={handleInputBlur}
+                disabled={isSubmitted}
+                placeholder={
+                  !isInputFocused && !userInput ? "정답을 입력해주세요" : ""
+                }
+                autoFocus
+              />
+            </form>
+
+            {message && <div>{message}</div>}
+
+            <h4>
+              현재 점수 : {score} | 현재 체력 : {life}
+            </h4>
+            <h4>총 문제 수 : {maxQuizCount}</h4>
+
+            <button
+              className="minigame-quiz__input-form__submit-btn"
+              onClick={handleSubmit}
+              disabled={isSubmitted}
+            >
               <span>제출</span>
             </button>
-          </form>
-          {message && <div>{message}</div>}
 
-          <h4>
-            현재 점수 : {score} | 현재 체력 : {life}
-          </h4>
-          <h4>총 문제 수 : {maxQuizCount}</h4>
-
-          <button id="next-btn" onClick={handleNext} hidden={!isSubmitted}>
-            다음 퀴즈
-          </button>
+            <button id="next-btn" onClick={handleNext} hidden={!isSubmitted}>
+              다음 퀴즈
+            </button>
+          </div>
         </div>
       </div>
     </>
