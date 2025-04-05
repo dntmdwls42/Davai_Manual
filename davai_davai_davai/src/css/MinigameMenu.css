@@ -10,7 +10,7 @@
   margin: 3vh 0 3vh 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   height: 650px;
   width: 450px;
@@ -20,16 +20,16 @@
 
 .minigame-menu__back-button {
   position: absolute;
-  left: 20px;
-  top: 23px;
-  width: 30px;
-  height: 30px;
+  left: 24px;
+  top: 27px;
+  width: 25px;
+  height: 25px;
 }
 
 .minigame-menu__title {
   color: white;
   font-size: 32px;
-  margin: 32px 0;
+  margin: 64px 0 32px 0;
 }
 
 .minigame-menu__quiz-selector {
@@ -82,6 +82,7 @@
 
 .minigame-menu__quiz-hint-image {
   clip-path: inset(1px 1px 1px 1px round var(--global-border-radius));
+  margin-bottom: 25px;
 }
 
 .minigame-menu__quiz-selector__button {
@@ -95,6 +96,8 @@
   transition: all 0.3s ease-in-out;
   cursor: pointer;
   width: 100%;
+  margin-top: 20px;
+  font-weight: 600;
 }
 
 .minigame-menu__quiz-selector__button:hover {

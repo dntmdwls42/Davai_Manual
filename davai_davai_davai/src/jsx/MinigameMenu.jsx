@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../css/Menu.css";
+import "../css/MinigameMenu.css";
 
-function Menu() {
+function MinigameMenu() {
   const [quizNumber, setQuizNumber] = React.useState(5);
 
   const handleNumber = (e) => {
@@ -14,7 +14,7 @@ function Menu() {
       <div id="minigame-container" className="page-container">
         <div className="minigame-menu">
           <div className="minigame-menu__back-button">
-            <Link>
+            <Link to={`/`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 height="100%"
@@ -65,4 +65,4 @@ function Menu() {
   );
 }
 
-export default Menu;
+export default MinigameMenu;
