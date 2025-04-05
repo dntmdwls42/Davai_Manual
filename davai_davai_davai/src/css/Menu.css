@@ -6,6 +6,7 @@
 }
 
 .minigame-menu {
+  position: relative;
   margin: 3vh 0 3vh 0;
   display: flex;
   flex-direction: column;
@@ -15,6 +16,14 @@
   width: 450px;
   background-color: var(--global-first-ui-color);
   clip-path: inset(1px 1px 1px 1px round var(--global-border-radius));
+}
+
+.minigame-menu__back-button {
+  position: absolute;
+  left: 20px;
+  top: 23px;
+  width: 30px;
+  height: 30px;
 }
 
 .minigame-menu__title {
