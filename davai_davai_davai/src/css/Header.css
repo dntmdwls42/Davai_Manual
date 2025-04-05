@@ -1,6 +1,7 @@
 header {
   margin-right: 10px;
   width: 100vw;
+  z-index: 998;
 }
 
 header svg {
