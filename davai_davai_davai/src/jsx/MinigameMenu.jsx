@@ -28,11 +28,9 @@ function MinigameMenu() {
           </div>
           <h1 className="minigame-menu__title">총기 퀴즈 선택</h1>
           {/* 아래에 삽입된 이미지는 임시임. */}
-          <img
-            className="minigame-menu__quiz-hint-image"
-            src="/image/USEC-gun-aiming.webp"
-            alt="USEC-gun-aiming"
-          />
+          <div className="minigame-menu__quiz-hint-image">
+            <img src="/image/USEC-gun-aiming.webp" alt="USEC-gun-aiming" />
+          </div>
           <div className="minigame-menu__quiz-selector">
             <p className="minigame-menu__quiz-selector__text">
               문제 유형과 갯수를 선택하세요
@@ -51,10 +49,7 @@ function MinigameMenu() {
               <option value={15}>15개</option>
             </select>
           </div>
-          <Link
-            to={`/Minigame/Weapon?number=${quizNumber}`}
-            style={{ margin: "10px" }}
-          >
+          <Link to={`/Minigame/Weapon?number=${quizNumber}`}>
             <button className="minigame-menu__quiz-selector__button">
               <p>문제 시작</p>
             </button>
