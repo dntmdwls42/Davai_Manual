@@ -15,6 +15,7 @@
   "getSoundNameFromItemName": "SELECT Sound_Name FROM Sound WHERE Sound_Item_Name = ?",
   "getImageAll": "SELECT * FROM Image",
   "getImageName": "SELECT Image_Name FROM Image",
+  "getImageNameAndImageItemName": "SELECT Image_Item_Name, Image_Name FROM Image",
   "getImageNameFromItemName": "SELECT Image_Name FROM Image WHERE Image_Item_Name = ?",
   "getAnswerContentFromItemName": "SELECT Answer_Content FROM Answer WHERE Answer_Item_Name = ?"
 }

@@ -7,7 +7,8 @@ function Weapon() {
   const queryParams = new URLSearchParams(location.search);
   const quizNumber = parseInt(queryParams.get("number"), 10) || 5;
 
-  const [dataList, setDataList] = React.useState([]);
+  const [weaponList, setWeaponList] = React.useState([]);
+  const [imageList, setImageList] = React.useState([]);
   const [data, setData] = React.useState(null);
   const [submittedWeapons, setSubmittedWeapons] = React.useState([]);
   const [score, setScore] = React.useState(0);
@@ -22,15 +23,14 @@ function Weapon() {
   // 입력 필드의 focus 상태를 추적하기 위한 state 추가
   const [isInputFocused, setIsInputFocused] = React.useState(false);
 
-  // data = Weapon_Name
   const fetchDataList = async () => {
     try {
       const response = await fetch("http://localhost:8000/api/weapon");
       if (!response.ok) throw new Error("Failed to fetch weapon list");
 
-      const data = await response.json();
-
-      setDataList(data);
+      const { weaponList, imageList } = await response.json();
+      setWeaponList(weaponList);
+      setImageList(imageList);
     } catch (err) {
       console.error(err);
       setMessage("Error : 데이터를 불러오는데 실패했습니다.");
@@ -39,15 +39,25 @@ function Weapon() {
 
   // 무기 리스트에서 이미 출제한 무기를 제외하고 무기를 랜덤으로 불러옴
   const fetchRandomWeapon = () => {
-    const availableWeapons = dataList.filter(
-      (data) => !submittedWeapons.includes(data.Weapon_Name),
+    const availableWeapons = weaponList.filter(
+      (weapon) => !submittedWeapons.includes(weapon.Weapon_Name),
     );
 
     // 난수를 이용하여 무기를 랜덤으로 불러옴
     const randomWeapon =
       availableWeapons[Math.floor(Math.random() * availableWeapons.length)];
 
-    setData(randomWeapon);
+    const matchedImage = imageList.find(
+      (item) => item.Image_Item_Name === randomWeapon.Weapon_Name,
+    );
+
+    setData({
+      Weapon_Name: randomWeapon.Weapon_Name,
+      Image_Name: matchedImage ? matchedImage.Image_Name : null,
+    });
+
+    console.log(data);
+
     setIsSubmitted(false);
     setUserInput("");
     setMessage("");
@@ -59,9 +69,9 @@ function Weapon() {
 
   // 무기 리스트가 업데이트 되면 무기를 불러옴
   React.useEffect(() => {
-    if (dataList.length > 0) fetchRandomWeapon();
+    if (weaponList.length > 0) fetchRandomWeapon();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dataList]);
+  }, [weaponList]);
 
   const handleInputChange = (e) => {
     setUserInput(e.target.value);
@@ -163,7 +173,7 @@ function Weapon() {
           <div className="minigame-quiz__image-container">
             <img
               className="minigame-quiz__image"
-              src="/image/Weapons/AK-12_Image.webp"
+              src={`/image/Weapons/${data.Image_Name}.webp`}
             />
           </div>
           <p className="minigame-quiz__description">

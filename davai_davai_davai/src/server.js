@@ -50,6 +50,9 @@ Bun.serve({
       try {
         //DB에서 무기 리스트를 불러옴
         const [weaponList] = await db.query(queries.getWeaponName);
+        const [imageList] = await db.query(
+          queries.getImageNameAndImageItemName,
+        );
 
         //무기 리스트가 없을 경우 에러 반환
         if (weaponList.length === 0) {
@@ -58,8 +61,13 @@ Bun.serve({
           });
         }
 
-        //정상이면 무기 리스트 반환
-        return new Response(JSON.stringify(weaponList), {
+        const responseData = {
+          weaponList: weaponList,
+          imageList: imageList,
+        };
+
+        //정상이면 데이터 반환
+        return new Response(JSON.stringify(responseData), {
           headers: {
             ...corsHeaders,
             //응답 데이터 타입을 json으로 설정
