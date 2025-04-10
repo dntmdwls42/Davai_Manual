@@ -192,7 +192,6 @@ function Weapon() {
                 placeholder={
                   !isInputFocused && !userInput ? "정답을 입력해주세요" : ""
                 }
-                autoFocus
               />
             </form>
 
