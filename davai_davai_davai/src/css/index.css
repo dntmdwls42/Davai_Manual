@@ -33,6 +33,13 @@ button {
   font-style: normal;
 }
 
+select {
+  border: none;
+  text-align: center;
+  outline: none;
+  cursor: pointer;
+}
+
 a {
   text-decoration: none;
   color: white;

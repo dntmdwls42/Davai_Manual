@@ -31,7 +31,7 @@ function MinigameMenu() {
           <div className="minigame-menu__quiz-hint-image">
             <img src="/image/USEC-gun-aiming.webp" alt="USEC-gun-aiming" />
           </div>
-          <div className="minigame-menu__quiz-selector">
+          <div className="minigame-menu__quiz-selector center-column">
             <p className="minigame-menu__quiz-selector__text">
               문제 유형과 갯수를 선택하세요
             </p>
