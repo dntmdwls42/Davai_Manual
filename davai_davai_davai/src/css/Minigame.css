@@ -5,7 +5,8 @@
   position: absolute;
 }
 
-.minigame-quiz {
+/* -------------------------퀴즈종료시 화면 CSS---------------------------- */
+.minigame-gameover {
   position: relative;
   margin: 3vh 0 3vh 0;
   display: flex;
@@ -17,6 +18,35 @@
   clip-path: inset(1px 1px 1px 1px round var(--global-border-radius));
 }
 
+.minigame-quiz__game-over__quiz-total-count,
+.minigame-quiz__game-over__quiz-try-count,
+.minigame-quiz__game-over__quiz-clear-count,
+.minigame-quiz__game-over__quiz-hp-remain {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.minigame-quiz__game-over-title {
+  color: white;
+  font-size: 32px;
+  margin: 64px 0 32px 0;
+}
+
+.minigame-quiz__game-over__quiz-restart-button {
+  position: absolute;
+  bottom: 50px;
+  background-color: var(--global-second-ui-color);
+  border: none;
+  border-radius: var(--global-border-radius);
+  padding: var(--global-button-padding-size);
+  font-size: 16px;
+  cursor: pointer;
+  color: white;
+  width: 35%;
+  font-weight: 600;
+}
+
+/* -------------------------메인퀴즈 화면 CSS---------------------------- */
 .minigame-quiz {
   position: relative;
   margin: 3vh 0 3vh 0;
