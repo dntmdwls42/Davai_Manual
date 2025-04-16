@@ -17,6 +17,18 @@
   clip-path: inset(1px 1px 1px 1px round var(--global-border-radius));
 }
 
+.minigame-quiz {
+  position: relative;
+  margin: 3vh 0 3vh 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 700px;
+  width: 550px;
+  background-color: var(--global-first-ui-color);
+  clip-path: inset(1px 1px 1px 1px round var(--global-border-radius));
+}
+
 .minigame-quiz__back-button {
   position: absolute;
   left: 24px;
@@ -28,19 +40,26 @@
 .minigame-quiz__title {
   color: white;
   font-size: 32px;
-  margin: 64px 0 32px 0;
+  margin: 58px 0 20px 0;
+}
+
+.minigame-quiz__number {
+  margin-bottom: 20px;
 }
 
 .minigame-quiz__image-container {
-  margin: 40px 0;
+  margin-bottom: 25px;
   background-color: black;
   border-radius: var(--global-border-radius);
   padding: 10px;
+  width: 400px;
+  height: 200px;
 }
 
 .minigame-quiz__image {
-  width: 340px;
-  height: 100px;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .minigame-quiz__description {
@@ -49,14 +68,25 @@
   margin-bottom: 25px;
 }
 
-.minigame-quiz__input-container {
+.minigame-quiz__score-container {
+  margin-bottom: 15px;
+}
+
+.minigame-quiz__form-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  margin-bottom: 50px;
 }
 
-.minigame-quiz__input-form__input {
+.minigame-quiz__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.minigame-quiz__form__input {
   background-color: var(--global-second-ui-color);
   border: none;
   border-radius: var(--global-border-radius);
@@ -68,51 +98,37 @@
   color: white;
   caret-color: white;
   text-align: center;
+  margin-bottom: 30px;
 }
 
 /* 포커스 시 border 제거 */
-.minigame-quiz__input-form__input:focus {
+.minigame-quiz__form__input:focus {
   outline: none;
   box-shadow: none;
 }
 
-.minigame-quiz__go-next-quiz {
-  display: flex;
-  justify-content: flex-end;
+.minigame-quiz__form__submit-btn,
+.minigame-quiz__next-btn {
+  position: absolute;
+  bottom: 50px;
   background-color: var(--global-second-ui-color);
   border: none;
   border-radius: var(--global-border-radius);
   padding: var(--global-button-padding-size);
   font-size: 16px;
-  transition: all 0.3s ease-in-out;
-  cursor: pointer;
-  width: 100%;
-  margin-top: 20px;
-  font-weight: 600;
-}
-
-.minigame-quiz__input-form__submit-btn {
-  background-color: var(--global-second-ui-color);
-  border: none;
-  border-radius: var(--global-border-radius);
-  padding: var(--global-button-padding-size);
-  font-size: 16px;
-  transition: all 0.3s ease-in-out;
   cursor: pointer;
   color: white;
-  margin-top: 20px;
-  width: 100%;
+  width: 30%;
   font-weight: 600;
 }
 
-.minigame-quiz__input-form__submit-btn:hover {
+.minigame-quiz__form__submit-btn:hover {
   background-color: rgba(255, 255, 255, 0.76);
-  transition: all 0.3s ease-in-out;
   color: var(--black-color);
   font-weight: 900;
 }
 
-.minigame-quiz__input-form__submit-btn:disabled {
+.minigame-quiz__form__submit-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }

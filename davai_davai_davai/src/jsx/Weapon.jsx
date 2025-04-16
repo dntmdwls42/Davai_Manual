@@ -57,6 +57,7 @@ function Weapon() {
     });
 
     console.log(data);
+    console.log(randomWeapon);
 
     setIsSubmitted(false);
     setUserInput("");
@@ -148,7 +149,7 @@ function Weapon() {
   if (isSubmitted) {
     //Timeout을 0ms로 줘도 focus가 되지만 Timeout을 주지 않으면 focus가 안됨
     setTimeout(() => {
-      document.querySelector("#next-btn").focus();
+      document.querySelector("#next-quiz-btn").focus();
     }, 0);
   }
 
@@ -170,19 +171,28 @@ function Weapon() {
             </Link>
           </div>
           <h1 className="minigame-quiz__title">무기 이름 맞추기</h1>
+          <h2 className="minigame-quiz__number">{maxQuizCount} 문제</h2>
           <div className="minigame-quiz__image-container">
             <img
               className="minigame-quiz__image"
               src={`/image/Weapons/${data.Image_Name}.webp`}
             />
           </div>
-          <p className="minigame-quiz__description">
+          <span className="minigame-quiz__description">
             이미지에 표시된 무기의 이름은 무엇일까요?
-          </p>
-          <div className="minigame-quiz__input-container">
-            <form onSubmit={handleSubmit}>
+          </span>
+
+          <div className="minigame-quiz__score-container">
+            <span>
+              현재 점수 : {score} | 현재 체력 : {life}
+            </span>
+          </div>
+
+          <div className="minigame-quiz__form-container">
+            <form className="minigame-quiz__form" onSubmit={handleSubmit}>
               <input
-                className="minigame-quiz__input-form__input"
+                id="user-input"
+                className="minigame-quiz__form__input"
                 type="text"
                 value={userInput}
                 onChange={handleInputChange}
@@ -192,25 +202,25 @@ function Weapon() {
                 placeholder={
                   !isInputFocused && !userInput ? "정답을 입력해주세요" : ""
                 }
+                autoFocus
               />
+
+              {message && <div>{message}</div>}
+
+              <button
+                className="minigame-quiz__form__submit-btn"
+                hidden={isSubmitted}
+              >
+                제출
+              </button>
             </form>
 
-            {message && <div>{message}</div>}
-
-            <h4>
-              현재 점수 : {score} | 현재 체력 : {life}
-            </h4>
-            <h4>총 문제 수 : {maxQuizCount}</h4>
-
             <button
-              className="minigame-quiz__input-form__submit-btn"
-              onClick={handleSubmit}
-              disabled={isSubmitted}
+              id="next-quiz-btn"
+              className="minigame-quiz__next-btn"
+              onClick={handleNext}
+              hidden={!isSubmitted}
             >
-              <span>제출</span>
-            </button>
-
-            <button id="next-btn" onClick={handleNext} hidden={!isSubmitted}>
               다음 퀴즈
             </button>
           </div>
