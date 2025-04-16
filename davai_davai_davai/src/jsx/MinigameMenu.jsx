@@ -4,9 +4,23 @@ import "../css/MinigameMenu.css";
 
 function MinigameMenu() {
   const [quizNumber, setQuizNumber] = React.useState(5);
+  const [quizType, setQuizType] = React.useState("weapon");
 
   const handleNumber = (e) => {
     setQuizNumber(e.target.value);
+  };
+
+  const handleQuizType = (e) => {
+    setQuizType(e.target.value);
+  };
+
+  const getQuizLink = () => {
+    switch (quizType) {
+      case "weapon":
+        return `/Minigame/Weapon?number=${quizNumber}`;
+      case "weaponAndCaliber":
+        return `/Minigame/WeaponAndCaliber?number=${quizNumber}`;
+    }
   };
 
   return (
@@ -35,13 +49,15 @@ function MinigameMenu() {
             <p className="minigame-menu__quiz-selector__text">
               문제 유형과 갯수를 선택하세요
             </p>
-            <select className="minigame-menu__quiz-type-selector">
-              <option value="1">총기 이름 맞추기</option>
-              <option value="2">총기 구경 맞추기</option>
+            <select
+              className="minigame-menu__quiz-type-selector"
+              onChange={handleQuizType}
+            >
+              <option value="weapon">총기 이름 맞추기</option>
+              <option value="weaponAndCaliber">총기 구경 맞추기</option>
             </select>
             <select
               className="minigame-menu__quiz-number-selector"
-              value={quizNumber}
               onChange={handleNumber}
             >
               <option value={5}>5개</option>
@@ -49,7 +65,7 @@ function MinigameMenu() {
               <option value={15}>15개</option>
             </select>
           </div>
-          <Link to={`/Minigame/Weapon?number=${quizNumber}`}>
+          <Link to={getQuizLink()}>
             <button className="minigame-menu__quiz-selector__button">
               <p>문제 시작</p>
             </button>
