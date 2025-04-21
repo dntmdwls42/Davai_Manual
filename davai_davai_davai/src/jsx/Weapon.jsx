@@ -56,7 +56,6 @@ function Weapon() {
       Image_Name: matchedImage ? matchedImage.Image_Name : null,
     });
 
-    console.log(data);
     console.log(randomWeapon);
 
     setIsSubmitted(false);
@@ -211,8 +210,6 @@ function Weapon() {
                 type="text"
                 value={userInput}
                 onChange={handleInputChange}
-                onFocus={handleInputFocus}
-                onBlur={handleInputBlur}
                 disabled={isSubmitted}
                 placeholder={
                   !isInputFocused && !userInput ? "정답을 입력해주세요" : ""

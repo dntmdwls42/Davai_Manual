@@ -37,7 +37,7 @@ function App() {
             <div className="main-card__contents">
               <img src="/image/USEC-gun-aiming.webp"></img>
               <div className="main-card__text">
-                <p>총기 구경 맞추기</p>
+                <p>총기 퀴즈 풀기</p>
               </div>
             </div>
           </Link>

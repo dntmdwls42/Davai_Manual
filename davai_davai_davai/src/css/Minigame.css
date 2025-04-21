@@ -131,12 +131,6 @@
   margin-bottom: 30px;
 }
 
-/* 포커스 시 border 제거 */
-.minigame-quiz__form__input:focus {
-  outline: none;
-  box-shadow: none;
-}
-
 .minigame-quiz__form__submit-btn,
 .minigame-quiz__next-btn {
   position: absolute;
