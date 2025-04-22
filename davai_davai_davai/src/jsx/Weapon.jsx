@@ -77,27 +77,9 @@ function Weapon() {
     setUserInput(e.target.value);
   };
 
-  // 입력 필드 focus 이벤트 핸들러 추가
-  const handleInputFocus = () => {
-    setIsInputFocused(true);
-  };
-
-  // 입력 필드 blur 이벤트 핸들러 추가
-  const handleInputBlur = () => {
-    setIsInputFocused(false);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // 사용자 입력값과 정답 확인 및 비교를 위한 전처리
-    if (
-      userInput.trim().replace(/\s+/g, "").replace(/-/g, "").toLowerCase() ===
-      data.Weapon_Name.trim()
-        .replace(/\s+/g, "")
-        .replace(/-/g, "")
-        .toLowerCase()
-    ) {
       setScore((score) => score + 1);
       setMessage("정답입니다! 점수가 1점 증가했습니다.");
     } else {
