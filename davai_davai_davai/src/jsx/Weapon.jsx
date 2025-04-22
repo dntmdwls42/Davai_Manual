@@ -9,6 +9,7 @@ function Weapon() {
 
   const [weaponList, setWeaponList] = React.useState([]);
   const [imageList, setImageList] = React.useState([]);
+  const [weaponAnswersList, setWeaponAnswersList] = React.useState({});
   const [data, setData] = React.useState(null);
   const [submittedWeapons, setSubmittedWeapons] = React.useState([]);
   const [score, setScore] = React.useState(0);
@@ -22,15 +23,43 @@ function Weapon() {
   const [message, setMessage] = React.useState("");
   // 입력 필드의 focus 상태를 추적하기 위한 state 추가
   const [isInputFocused, setIsInputFocused] = React.useState(false);
+  const [isGameOver, setIsGameOver] = React.useState(false);
+
+  const checkAnswer = (userInput, answers) => {
+    if (!userInput || !answers || answers.length === 0) return false;
+
+    // 사용자 입력값과 정답 확인 및 비교를 위한 전처리
+    const normalizedInput = userInput
+      .trim()
+      .replace(/\s+/g, "")
+      .replace(/-/g, "")
+      .toLowerCase();
+
+    // 사용자의 입력이 정답 문자열에 포함되어 있으면 true가 반환됨
+    return answers.some((answer) => {
+      const normalizedAnswer = answer
+        .trim()
+        .replace(/\s+/g, "")
+        .replace(/-/g, "")
+        .toLowerCase();
+
+      return normalizedInput.includes(normalizedAnswer);
+    });
+  };
 
   const fetchDataList = async () => {
     try {
       const response = await fetch("http://localhost:8000/api/weapon");
       if (!response.ok) throw new Error("Failed to fetch weapon list");
 
-      const { weaponList, imageList } = await response.json();
+      const { weaponList, imageList, weaponAnswersList } =
+        await response.json();
+
       setWeaponList(weaponList);
       setImageList(imageList);
+      setWeaponAnswersList(weaponAnswersList);
+
+      console.log("weaponAnswersList : ", weaponAnswersList);
     } catch (err) {
       console.error(err);
       setMessage("Error : 데이터를 불러오는데 실패했습니다.");
@@ -51,12 +80,16 @@ function Weapon() {
       (item) => item.Image_Item_Name === randomWeapon.Weapon_Name,
     );
 
+    const matchedWeaponAnswers = weaponAnswersList[randomWeapon.Weapon_Name];
+
     setData({
       Weapon_Name: randomWeapon.Weapon_Name,
       Image_Name: matchedImage ? matchedImage.Image_Name : null,
+      matchedWeaponAnswers: matchedWeaponAnswers,
     });
 
-    console.log(randomWeapon);
+    console.log("RandomWeapon : ", randomWeapon);
+    console.log("MatchedWeaponAnswer : ", matchedWeaponAnswers);
 
     setIsSubmitted(false);
     setUserInput("");
@@ -80,6 +113,9 @@ function Weapon() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const isCorrect = checkAnswer(userInput, data.matchedWeaponAnswers);
+
+    if (isCorrect) {
       setScore((score) => score + 1);
       setMessage("정답입니다! 점수가 1점 증가했습니다.");
     } else {
@@ -92,12 +128,16 @@ function Weapon() {
   };
 
   const handleNext = () => {
-    setQuizCount((count) => count + 1);
-    fetchRandomWeapon();
+    if (life < 0) {
+      setIsGameOver(true);
+    } else {
+      setQuizCount((count) => count + 1);
+      fetchRandomWeapon();
 
-    setTimeout(() => {
-      document.querySelector("#user-input").focus();
-    }, 0);
+      setTimeout(() => {
+        document.querySelector("#user-input").focus();
+      }, 0);
+    }
   };
 
   const handleRestart = () => {
@@ -108,13 +148,13 @@ function Weapon() {
     return <div>Loading...</div>;
   }
 
-  if (life < 0 || quizCount >= maxQuizCount) {
+  if (isGameOver || quizCount >= maxQuizCount) {
     return (
       <>
         <div id="minigame-container" className="page-container">
           <div className="minigame-gameover">
             <h1 className="minigame-quiz__game-over-title">
-              {life < 0
+              {isGameOver
                 ? "모든 체력을 소모하였습니다."
                 : "모든 문제를 푸셨습니다."}
             </h1>
@@ -122,13 +162,13 @@ function Weapon() {
               총 문제 수 : {maxQuizCount}
             </h2>
             <h2 className="minigame-quiz__game-over__quiz-try-count">
-              푼 문제 수 : {life < 0 ? quizCount + 1 : quizCount}
+              푼 문제 수 : {isGameOver ? quizCount + 1 : quizCount}
             </h2>
             <h2 className="minigame-quiz__game-over__quiz-clear-count">
               맞춘 문제 수 : {score}
             </h2>
             <h2 className="minigame-quiz__game-over__quiz-hp-remain">
-              남은 생명 : {life < 0 ? 0 : life}
+              남은 생명 : {isGameOver ? 0 : life}
             </h2>
             <button
               className="minigame-quiz__game-over__quiz-restart-button"
@@ -180,7 +220,7 @@ function Weapon() {
 
           <div className="minigame-quiz__score-container">
             <span>
-              현재 점수 : {score} | 현재 체력 : {life}
+              현재 점수 : {score} | 현재 체력 : {life < 0 ? 0 : life}
             </span>
           </div>
 
@@ -197,6 +237,7 @@ function Weapon() {
                   !isInputFocused && !userInput ? "정답을 입력해주세요" : ""
                 }
                 autoFocus
+                required
               />
 
               {message && <div>{message}</div>}
