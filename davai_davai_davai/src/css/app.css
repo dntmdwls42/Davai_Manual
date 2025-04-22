@@ -4,6 +4,7 @@
 .title-container {
   padding-top: 50px;
   font-family: "FUNFLOWSURVIVORKR", sans-serif;
+  margin-bottom: 15vh;
 }
 
 .main-title {
@@ -17,38 +18,25 @@
   font-size: 30px;
 }
 
-.main-btn-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  height: 70%;
-}
-
-.main-btn {
-  padding: 10px 30px;
-  margin: 33px 0;
-  font-size: 40px;
-  font-weight: 100;
-  position: relative;
+.main-card-overflow-container {
   overflow: hidden;
-}
-
-.main-btn:hover {
-  border-radius: 11px;
-  background-color: rgba(255, 255, 255, 0.2);
-  transform: scale(1.07);
+  width: 940px;
+  height: 300px;
 }
 
 .main-card-container {
   display: flex;
   align-items: center;
-  margin-top: 15vh;
   gap: 20px;
 }
 
-.main-card__border-fixed {
+.main-card-button-container {
+  position: relative;
+}
+
+.main-card__link {
   clip-path: inset(1px 1px 1px 1px round var(--global-border-radius));
+  transition: transform 0.3s ease;
 }
 
 .main-card__contents {
@@ -71,20 +59,23 @@
   text-align: center;
 }
 
-.main-card-Carousel-Button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.main-card-carousel-button1,
+.main-card-carousel-button2 {
   background-color: white;
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  cursor: pointer;
 }
 
-/* 웬만하면 side button의 색상과 동일하게 처리하려는데 어때..? */
+.main-card-carousel-button1 {
+  position: absolute;
+  top: 45%;
+  left: -60px;
+}
 
-/* 여기서 left 버튼과 right 버튼 각각 left는 오른쪽에 margin을 right는
-왼쪽에 margin을 두고 싶은데 어떻게 해야함..? */
-
-/* svg 가 carousel button 의 가운데에 정렬되어 있지 않은 것 같음..
-나중에 확인해볼 것 : (SVG에만 영향을 주려면 어떻게 해야 하더라..? pointer 같은게 있었는데 > 이거였나..?) */
+.main-card-carousel-button2 {
+  position: absolute;
+  top: 45%;
+  right: -60px;
+}
