@@ -189,8 +189,8 @@
   "PKM": ["Kalashnikov PKM", "PKM"],
   "PKP": ["Kalashnikov PKP", "PKP"],
   "PL-15": ["Lebedev PL-15", "PL-15"],
-  "PM (t) pistol": ["Makarov PM (t)", "PM (t) pistol", "PM pistol"],
-  "PM pistol": ["Makarov PM", "PM pistol", "PM (t) pistol"],
+  "PM (t) pistol": ["Makarov PM (t)", "PM (t) pistol", "PM pistol", "PM"],
+  "PM pistol": ["Makarov PM", "PM pistol", "PM (t) pistol", "PM"],
   "PP-19-01": [
     "PP-19-01 Vityaz",
     "PP-19-01",
