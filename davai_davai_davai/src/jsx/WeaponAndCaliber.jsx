@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import "../css/Minigame.css";
 
 function WeaponAndCaliber() {
@@ -7,9 +7,11 @@ function WeaponAndCaliber() {
   const queryParams = new URLSearchParams(location.search);
   const quizNumber = parseInt(queryParams.get("number"), 10) || 5;
 
-  const [dataList, setDataList] = React.useState([]);
-  const [data, setData] = React.useState(null);
+  const [weaponAndCaliberList, setWeaponAndCaliberList] = React.useState([]);
+  const [imageList, setImageList] = React.useState([]);
   const [submittedWeapons, setSubmittedWeapons] = React.useState([]);
+  const [fetchedWeaponData, setFetchedWeaponData] = React.useState(null);
+  const [fetchedImageName, setFetchedImageName] = React.useState(null);
   const [score, setScore] = React.useState(0);
   const [life, setLife] = React.useState(3);
   const [quizCount, setQuizCount] = React.useState(0);
@@ -19,6 +21,8 @@ function WeaponAndCaliber() {
   // 제출 시 버튼 비활성화 및 다음 문제 버튼 출력
   const [isSubmitted, setIsSubmitted] = React.useState(false);
   const [message, setMessage] = React.useState("");
+  // 입력 필드의 focus 상태를 추적하기 위한 state 추가
+  const [isInputFocused, setIsInputFocused] = React.useState(false);
 
   // data = Weapon_Name, Weapon_Caliber
   const fetchDataList = async () => {
@@ -26,11 +30,15 @@ function WeaponAndCaliber() {
       const response = await fetch(
         "http://localhost:8000/api/weaponAndCaliber",
       );
+
       if (!response.ok) throw new Error("Failed to fetch data list");
 
-      const data = await response.json();
+      const { weaponAndCaliberList, imageList } = await response.json();
 
-      setDataList(data);
+      console.log(imageList);
+
+      setWeaponAndCaliberList(weaponAndCaliberList);
+      setImageList(imageList);
     } catch (err) {
       console.error(err);
       setMessage("Error : 데이터를 불러오는데 실패했습니다.");
@@ -39,15 +47,24 @@ function WeaponAndCaliber() {
 
   // 무기 리스트에서 이미 출제한 무기를 제외하고 무기를 랜덤으로 불러옴
   const fetchRandomWeapon = () => {
-    const availableWeapons = dataList.filter(
-      (data) => !submittedWeapons.includes(data.Weapon_Name),
+    const availableWeapons = weaponAndCaliberList.filter(
+      (weapon) => !submittedWeapons.includes(weapon.Weapon_Name),
     );
 
     // 난수를 이용하여 무기를 랜덤으로 불러옴
     const randomWeapon =
       availableWeapons[Math.floor(Math.random() * availableWeapons.length)];
 
-    setData(randomWeapon);
+    console.log(randomWeapon);
+
+    const matchedImage = imageList.find(
+      (item) => item.Image_Item_Name === randomWeapon.Weapon_Name,
+    );
+
+    console.log(matchedImage);
+
+    setFetchedWeaponData(randomWeapon);
+    setFetchedImageName(matchedImage);
     setIsSubmitted(false);
     setUserInput("");
     setMessage("");
@@ -57,14 +74,28 @@ function WeaponAndCaliber() {
     fetchDataList();
   }, []);
 
+  React.useEffect(() => {
+    console.log(fetchedImageName);
+  }, [fetchedImageName]);
+
   // 무기 리스트가 업데이트 되면 무기를 불러옴
   React.useEffect(() => {
-    if (dataList.length > 0) fetchRandomWeapon();
+    if (weaponAndCaliberList.length > 0) fetchRandomWeapon();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dataList]);
+  }, [weaponAndCaliberList]);
 
   const handleInputChange = (e) => {
     setUserInput(e.target.value);
+  };
+
+  // 입력 필드 focus 이벤트 핸들러 추가
+  const handleInputFocus = () => {
+    setIsInputFocused(true);
+  };
+
+  // 입력 필드 blur 이벤트 핸들러 추가
+  const handleInputBlur = () => {
+    setIsInputFocused(false);
   };
 
   const handleSubmit = (e) => {
@@ -73,7 +104,7 @@ function WeaponAndCaliber() {
     // 사용자 입력값과 정답 확인 및 비교를 위한 전처리
     if (
       userInput.trim().replace(/\s+/g, "").replace(/-/g, "").toLowerCase() ===
-      data.Weapon_Caliber.trim()
+      fetchedWeaponData.Weapon_Caliber.trim()
         .replace(/\s+/g, "")
         .replace(/-/g, "")
         .toLowerCase()
@@ -81,12 +112,14 @@ function WeaponAndCaliber() {
       setScore((score) => score + 1);
       setMessage("정답입니다! 점수가 1점 증가했습니다.");
     } else {
-      setMessage(`틀렸습니다. 정답은 ${data.Weapon_Caliber}입니다.`);
+      setMessage(
+        `틀렸습니다. 정답은 ${fetchedWeaponData.Weapon_Caliber}입니다.`,
+      );
       setLife((life) => life - 1);
     }
 
     setIsSubmitted(true);
-    setSubmittedWeapons((prev) => [...prev, data?.Weapon_Name]);
+    setSubmittedWeapons((prev) => [...prev, fetchedWeaponData?.Weapon_Caliber]);
   };
 
   const handleNext = () => {
@@ -101,7 +134,12 @@ function WeaponAndCaliber() {
     window.location.reload();
   };
 
-  if (!data) {
+  if (
+    !fetchedWeaponData ||
+    !fetchedImageName ||
+    weaponAndCaliberList.length === 0 ||
+    imageList.length === 0
+  ) {
     return <div>Loading...</div>;
   }
 
@@ -133,41 +171,75 @@ function WeaponAndCaliber() {
 
   return (
     <>
-      <div className="page-container">
-        <h1>총기 구경 맞추기</h1>
-        <div className="quiz-container center">
-          <h3>
-            {quizCount + 1}. 총기 이름 : {data.Weapon_Name} 총기 구경 :{" "}
-            {data.Weapon_Caliber}
-          </h3>
-          {/* <img src="/image/AK-103.webp"></img> */}
-        </div>
-
-        <div className="form-container">
-          <form onSubmit={handleSubmit}>
-            <input
-              id="user-input"
-              type="text"
-              value={userInput}
-              onChange={handleInputChange}
-              disabled={isSubmitted}
-              placeholder="총기 이름 입력"
-              autoFocus
+      <div id="minigame-container" className="page-container">
+        <div className="minigame-quiz">
+          <div className="minigame-quiz__back-button">
+            <Link to={`/`}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="100%"
+                viewBox="0 -960 960 960"
+                width="100%"
+                fill="#e3e3e3"
+              >
+                <path d="M640-80 240-480l400-400 71 71-329 329 329 329-71 71Z" />
+              </svg>
+            </Link>
+          </div>
+          <h1 className="minigame-quiz__title">총기 구경 맞추기</h1>
+          <h2 className="minigame-quiz__number">{maxQuizCount} 문제</h2>
+          <div className="minigame-quiz__image-container">
+            <img
+              className="minigame-quiz__image"
+              src={`/image/Weapons/${fetchedImageName.Image_Name}.webp`}
             />
-            <button className="form-btn" type="submit" disabled={isSubmitted}>
-              <span>제출</span>
+          </div>
+          <span className="minigame-quiz__description">
+            이미지에 표시된 무기의 구경은 무엇일까요?
+          </span>
+
+          <div className="minigame-quiz__score-container">
+            <span>
+              현재 점수 : {score} | 현재 체력 : {life}
+            </span>
+          </div>
+
+          <div className="minigame-quiz__form-container">
+            <form className="minigame-quiz__form" onSubmit={handleSubmit}>
+              <input
+                id="user-input"
+                className="minigame-quiz__form__input"
+                type="text"
+                value={userInput}
+                onChange={handleInputChange}
+                onFocus={handleInputFocus}
+                onBlur={handleInputBlur}
+                disabled={isSubmitted}
+                placeholder={
+                  !isInputFocused && !userInput ? "정답을 입력해주세요" : ""
+                }
+                autoFocus
+              />
+
+              {message && <div>{message}</div>}
+
+              <button
+                className="minigame-quiz__form__submit-btn"
+                hidden={isSubmitted}
+              >
+                제출
+              </button>
+            </form>
+
+            <button
+              id="next-quiz-btn"
+              className="minigame-quiz__next-btn"
+              onClick={handleNext}
+              hidden={!isSubmitted}
+            >
+              다음 퀴즈
             </button>
-          </form>
-          {message && <div>{message}</div>}
-
-          <h4>
-            현재 점수 : {score} | 현재 체력 : {life}
-          </h4>
-          <h4>총 문제 수 : {maxQuizCount}</h4>
-
-          <button id="next-btn" onClick={handleNext} hidden={!isSubmitted}>
-            다음 퀴즈
-          </button>
+          </div>
         </div>
       </div>
     </>

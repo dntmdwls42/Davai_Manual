@@ -153,7 +153,7 @@ const server = Bun.serve({
     if (url.pathname === "/api/weaponAndCaliber" && req.method === "GET") {
       try {
         const [weaponAndCaliberList] = await db.query(
-          queries.getWeaponNameAndCaliberNotGr,
+          cachedQueries.getWeaponNameAndCaliberNotGr,
         );
 
         if (weaponAndCaliberList.length === 0) {
@@ -162,7 +162,12 @@ const server = Bun.serve({
           });
         }
 
-        return new Response(JSON.stringify(weaponAndCaliberList), {
+        const responseData = {
+          weaponAndCaliberList: weaponAndCaliberList,
+          imageList: cachedImageList,
+        };
+
+        return new Response(JSON.stringify(responseData), {
           headers: {
             ...corsHeaders,
             "Content-Type": "application/json",
