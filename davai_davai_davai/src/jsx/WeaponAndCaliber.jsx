@@ -21,8 +21,6 @@ function WeaponAndCaliber() {
   // 제출 시 버튼 비활성화 및 다음 문제 버튼 출력
   const [isSubmitted, setIsSubmitted] = React.useState(false);
   const [message, setMessage] = React.useState("");
-  // 입력 필드의 focus 상태를 추적하기 위한 state 추가
-  const [isInputFocused, setIsInputFocused] = React.useState(false);
 
   // data = Weapon_Name, Weapon_Caliber
   const fetchDataList = async () => {
@@ -215,9 +213,7 @@ function WeaponAndCaliber() {
                 onFocus={handleInputFocus}
                 onBlur={handleInputBlur}
                 disabled={isSubmitted}
-                placeholder={
-                  !isInputFocused && !userInput ? "정답을 입력해주세요" : ""
-                }
+                placeholder="정답을 입력해주세요"
                 autoFocus
               />
 
