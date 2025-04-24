@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../css/MinigameMenu.css";
+import "../../css/components/MinigameMenu.css";
 
 function MinigameMenu() {
   const [quizNumber, setQuizNumber] = React.useState(5);

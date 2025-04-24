@@ -2,14 +2,14 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import App from "./App";
-import Minigame from "./Minigame";
-import Background from "./Background";
+import Minigame from "./minigame/Minigame";
+import Background from "./layout/Background";
 import AnimationTest from "./AnimationTest";
-import Layout from "./Layout";
-import Header from "./Header";
-import "../css/index.css";
-import "../css/background.css";
-import "../css/Header.css";
+import Layout from "./layout/Layout";
+import Header from "./layout/Header";
+import "../css/common/index.css";
+import "../css/components/background.css";
+import "../css/components/Header.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Router>

@@ -1,5 +1,4 @@
 import React from "react";
-import "../css/animation.css";
 
 function AnimationTest() {
   const [flippedTiles, setFlippedTiles] = React.useState({});

@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation, Link } from "react-router-dom";
-import "../css/Minigame.css";
+import "../../css/components/Minigame.css";
 
 function Weapon() {
   const location = useLocation();

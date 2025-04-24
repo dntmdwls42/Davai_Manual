@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../css/layout.css";
+import "../../css/components/Layout.css";
 
 function Layout() {
   const [isSidebarVisible, setIsSidebarVisible] = React.useState(false);

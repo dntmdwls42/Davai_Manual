@@ -1,4 +1,6 @@
+@import "reset.css";
 @import "font.css";
+@import "animation.css";
 
 :root {
   --black-color: #282828;

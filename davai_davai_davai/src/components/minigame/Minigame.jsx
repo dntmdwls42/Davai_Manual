@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import MinigameMenu from "./MinigameMenu.jsx";
-import Weapon from "./Weapon.jsx";
-import WeaponAndCaliber from "./WeaponAndCaliber.jsx";
+import Weapon from "../minigame/Weapon.jsx";
+import WeaponAndCaliber from "../minigame/WeaponAndCaliber.jsx";
 
 function Minigame() {
   return (

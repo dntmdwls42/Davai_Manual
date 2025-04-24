@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import "../css/app.css";
-import { backgroundMovement } from "../components/backgroundMove";
+import "../css/components/App.css";
+import { backgroundMovement } from "../utils/backgroundMove";
 
 function App() {
   const [cardIndex, setCardIndex] = React.useState(0);
