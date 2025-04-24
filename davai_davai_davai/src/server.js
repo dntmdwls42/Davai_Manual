@@ -47,7 +47,7 @@ async function initializeData() {
     cachedQueries = await loadQueries();
     cachedWeaponAnswers = await loadWeaponAnswers();
 
-    //DB에서 데이터 리스트를 불러옴
+    // DB에서 데이터 리스트를 불러옴
     cachedWeaponList = (await db.query(cachedQueries.getWeaponName))[0];
     cachedImageList = (
       await db.query(cachedQueries.getImageNameAndImageItemName)
