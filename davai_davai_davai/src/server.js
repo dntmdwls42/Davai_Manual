@@ -3,10 +3,13 @@ import { connectDB } from "./db";
 
 const queriesPath = "./src/config/queries.json";
 const correctWeaponAnswersPath = "./src/config/correct_weapon_answers.json";
+const correctCaliberAnswersPath = "./src/config/correct_caliber_answers.json";
 
 let cachedQueries = null;
 let cachedWeaponAnswers = null;
+let cachedCaliberAnswers = null;
 let cachedWeaponList = null;
+let cachedWeaponAndCaliberNotGrList = null;
 let cachedImageList = null;
 let db = null;
 
@@ -32,6 +35,16 @@ async function loadWeaponAnswers() {
   }
 }
 
+async function loadCaliberAnswers() {
+  try {
+    const caliberAnswersJson = await Bun.file(correctCaliberAnswersPath).text();
+    return JSON.parse(caliberAnswersJson);
+  } catch (err) {
+    console.error("Error reading answers.json : ", err);
+    return {};
+  }
+}
+
 // 초기화 함수
 async function initializeData() {
   try {
@@ -46,9 +59,13 @@ async function initializeData() {
 
     cachedQueries = await loadQueries();
     cachedWeaponAnswers = await loadWeaponAnswers();
+    cachedCaliberAnswers = await loadCaliberAnswers();
 
     // DB에서 데이터 리스트를 불러옴
     cachedWeaponList = (await db.query(cachedQueries.getWeaponName))[0];
+    cachedWeaponAndCaliberNotGrList = (
+      await db.query(cachedQueries.getWeaponNameAndCaliberNotGr)
+    )[0];
     cachedImageList = (
       await db.query(cachedQueries.getImageNameAndImageItemName)
     )[0];
@@ -57,11 +74,15 @@ async function initializeData() {
     if (
       !cachedQueries ||
       !cachedWeaponAnswers ||
+      !cachedCaliberAnswers ||
       !cachedWeaponList ||
+      !cachedWeaponAndCaliberNotGrList ||
       !cachedImageList ||
       Object.keys(cachedQueries).length === 0 ||
       Object.keys(cachedWeaponAnswers).length === 0 ||
+      Object.keys(cachedCaliberAnswers).length === 0 ||
       cachedWeaponList.length === 0 ||
+      cachedWeaponAndCaliberNotGrList.length === 0 ||
       cachedImageList.length === 0
     ) {
       throw new Error("Invalid or empty data loaded");
@@ -74,7 +95,9 @@ async function initializeData() {
     // 초기화 실패 시 캐시된 데이터 삭제
     cachedQueries = {};
     cachedWeaponAnswers = {};
+    cachedCaliberAnswers = {};
     cachedWeaponList = [];
+    cachedWeaponAndCaliberNotGrList = [];
     cachedImageList = [];
   }
 }
@@ -150,27 +173,38 @@ const server = Bun.serve({
       }
     }
 
+    //============================Caliber============================\\
+
     if (url.pathname === "/api/weaponAndCaliber" && req.method === "GET") {
       try {
-        const [weaponAndCaliberList] = await db.query(
-          cachedQueries.getWeaponNameAndCaliberNotGr,
-        );
-
-        if (weaponAndCaliberList.length === 0) {
-          return new Response(JSON.stringify({ error: "Data not found" }), {
-            status: 404,
+        if (
+          !cachedWeaponAndCaliberNotGrList ||
+          !cachedImageList ||
+          !cachedCaliberAnswers ||
+          cachedWeaponAndCaliberNotGrList === 0 ||
+          cachedImageList.length === 0 ||
+          Object.keys(cachedCaliberAnswers).length === 0
+        ) {
+          return new Response(JSON.stringify({ error: "Data not available" }), {
+            status: 503,
+            headers: {
+              ...corsHeaders,
+              "Content-Type": "application/json",
+            },
           });
         }
 
         const responseData = {
-          weaponAndCaliberList: weaponAndCaliberList,
+          weaponList: cachedWeaponAndCaliberNotGrList,
           imageList: cachedImageList,
+          caliberAnswersList: cachedCaliberAnswers,
         };
 
         return new Response(JSON.stringify(responseData), {
           headers: {
             ...corsHeaders,
             "Content-Type": "application/json",
+            "Cache-Control": "public, max-age=3600",
           },
         });
       } catch (err) {

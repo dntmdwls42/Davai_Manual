@@ -7,11 +7,11 @@ function WeaponAndCaliber() {
   const queryParams = new URLSearchParams(location.search);
   const quizNumber = parseInt(queryParams.get("number"), 10) || 5;
 
-  const [weaponAndCaliberList, setWeaponAndCaliberList] = React.useState([]);
+  const [weaponList, setWeaponList] = React.useState([]);
   const [imageList, setImageList] = React.useState([]);
+  const [caliberAnswersList, setCaliberAnswersList] = React.useState({});
+  const [data, setData] = React.useState([]);
   const [submittedWeapons, setSubmittedWeapons] = React.useState([]);
-  const [fetchedWeaponData, setFetchedWeaponData] = React.useState(null);
-  const [fetchedImageName, setFetchedImageName] = React.useState(null);
   const [score, setScore] = React.useState(0);
   const [life, setLife] = React.useState(3);
   const [quizCount, setQuizCount] = React.useState(0);
@@ -22,7 +22,29 @@ function WeaponAndCaliber() {
   const [isSubmitted, setIsSubmitted] = React.useState(false);
   const [message, setMessage] = React.useState("");
 
-  // data = Weapon_Name, Weapon_Caliber
+  const checkAnswer = (userInput, answers) => {
+    if (!userInput || !answers || answers.length === 0) return false;
+
+    // 사용자 입력값과 정답 확인 및 비교를 위한 전처리
+    const normalizedInput = userInput
+      .trim()
+      .replace(/\s+/g, "")
+      .replace(/-/g, "")
+      .toLowerCase();
+
+    // 사용자의 입력이 정답 문자열에 포함되어 있으면 true가 반환됨
+    return answers.some((answer) => {
+      const normalizedAnswer = answer
+        .trim()
+        .replace(/\s+/g, "")
+        .replace(/-/g, "")
+        .toLowerCase();
+
+      return normalizedInput.includes(normalizedAnswer);
+    });
+  };
+
+  // server.js에서 리스트 데이터 불러옴
   const fetchDataList = async () => {
     try {
       const response = await fetch(
@@ -31,12 +53,12 @@ function WeaponAndCaliber() {
 
       if (!response.ok) throw new Error("Failed to fetch data list");
 
-      const { weaponAndCaliberList, imageList } = await response.json();
+      const { weaponList, imageList, caliberAnswersList } =
+        await response.json();
 
-      console.log(imageList);
-
-      setWeaponAndCaliberList(weaponAndCaliberList);
+      setWeaponList(weaponList);
       setImageList(imageList);
+      setCaliberAnswersList(caliberAnswersList);
     } catch (err) {
       console.error(err);
       setMessage("Error : 데이터를 불러오는데 실패했습니다.");
@@ -45,7 +67,7 @@ function WeaponAndCaliber() {
 
   // 무기 리스트에서 이미 출제한 무기를 제외하고 무기를 랜덤으로 불러옴
   const fetchRandomWeapon = () => {
-    const availableWeapons = weaponAndCaliberList.filter(
+    const availableWeapons = weaponList.filter(
       (weapon) => !submittedWeapons.includes(weapon.Weapon_Name),
     );
 
@@ -53,16 +75,21 @@ function WeaponAndCaliber() {
     const randomWeapon =
       availableWeapons[Math.floor(Math.random() * availableWeapons.length)];
 
-    console.log(randomWeapon);
-
     const matchedImage = imageList.find(
       (item) => item.Image_Item_Name === randomWeapon.Weapon_Name,
     );
 
-    console.log(matchedImage);
+    const matchedCaliberAnswers = caliberAnswersList[randomWeapon.Weapon_Name];
 
-    setFetchedWeaponData(randomWeapon);
-    setFetchedImageName(matchedImage);
+    console.log("matchedCaliberAnswers : ", matchedCaliberAnswers);
+
+    setData({
+      Weapon_Name: randomWeapon.Weapon_Name,
+      Weapon_Caliber: randomWeapon.Weapon_Caliber,
+      Image_Name: matchedImage ? matchedImage.Image_Name : null,
+      matchedCaliberAnswers: matchedCaliberAnswers,
+    });
+
     setIsSubmitted(false);
     setUserInput("");
     setMessage("");
@@ -73,51 +100,33 @@ function WeaponAndCaliber() {
   }, []);
 
   React.useEffect(() => {
-    console.log(fetchedImageName);
-  }, [fetchedImageName]);
+    console.log("data : ", data);
+  }, [data]);
 
   // 무기 리스트가 업데이트 되면 무기를 불러옴
   React.useEffect(() => {
-    if (weaponAndCaliberList.length > 0) fetchRandomWeapon();
+    if (weaponList.length > 0) fetchRandomWeapon();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [weaponAndCaliberList]);
+  }, [weaponList]);
 
   const handleInputChange = (e) => {
     setUserInput(e.target.value);
   };
 
-  // 입력 필드 focus 이벤트 핸들러 추가
-  const handleInputFocus = () => {
-    setIsInputFocused(true);
-  };
-
-  // 입력 필드 blur 이벤트 핸들러 추가
-  const handleInputBlur = () => {
-    setIsInputFocused(false);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // 사용자 입력값과 정답 확인 및 비교를 위한 전처리
-    if (
-      userInput.trim().replace(/\s+/g, "").replace(/-/g, "").toLowerCase() ===
-      fetchedWeaponData.Weapon_Caliber.trim()
-        .replace(/\s+/g, "")
-        .replace(/-/g, "")
-        .toLowerCase()
-    ) {
+    const isCorrect = checkAnswer(userInput, data.matchedCaliberAnswers);
+    if (isCorrect) {
       setScore((score) => score + 1);
       setMessage("정답입니다! 점수가 1점 증가했습니다.");
     } else {
-      setMessage(
-        `틀렸습니다. 정답은 ${fetchedWeaponData.Weapon_Caliber}입니다.`,
-      );
+      setMessage(`틀렸습니다. 정답은 ${data.Weapon_Caliber}입니다.`);
       setLife((life) => life - 1);
     }
 
     setIsSubmitted(true);
-    setSubmittedWeapons((prev) => [...prev, fetchedWeaponData?.Weapon_Caliber]);
+    setSubmittedWeapons((prev) => [...prev, data?.Weapon_Caliber]);
   };
 
   const handleNext = () => {
@@ -132,12 +141,7 @@ function WeaponAndCaliber() {
     window.location.reload();
   };
 
-  if (
-    !fetchedWeaponData ||
-    !fetchedImageName ||
-    weaponAndCaliberList.length === 0 ||
-    imageList.length === 0
-  ) {
+  if (!data) {
     return <div>Loading...</div>;
   }
 
@@ -163,7 +167,7 @@ function WeaponAndCaliber() {
   if (isSubmitted) {
     //Timeout을 0ms로 줘도 focus가 되지만 Timeout을 주지 않으면 focus가 안됨
     setTimeout(() => {
-      document.querySelector("#next-btn").focus();
+      document.querySelector("#next-quiz-btn").focus();
     }, 0);
   }
 
@@ -189,7 +193,7 @@ function WeaponAndCaliber() {
           <div className="minigame-quiz__image-container">
             <img
               className="minigame-quiz__image"
-              src={`/image/Weapons/${fetchedImageName.Image_Name}.webp`}
+              src={`/image/Weapons/${data.Image_Name}.webp`}
             />
           </div>
           <span className="minigame-quiz__description">
@@ -210,8 +214,6 @@ function WeaponAndCaliber() {
                 type="text"
                 value={userInput}
                 onChange={handleInputChange}
-                onFocus={handleInputFocus}
-                onBlur={handleInputBlur}
                 disabled={isSubmitted}
                 placeholder="정답을 입력해주세요"
                 autoFocus
