@@ -63,6 +63,7 @@ function MinigameMenu() {
               <option value={5}>5개</option>
               <option value={10}>10개</option>
               <option value={15}>15개</option>
+              <option value={999}>모든 문제</option>
             </select>
           </div>
           <Link to={getQuizLink()}>
