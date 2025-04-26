@@ -61,7 +61,7 @@
     "AK-74M"
   ],
   "AK-12": ["Kalashnikov AK-12", "AK-12"],
-  "AK-74": ["Kalashnikov AK-74", "AK-74", "AK-74N"],
+  "AK-74": ["Kalashnikov AK-74", "AK-74", "AK-74N", "AKS-74", "AKS-74N"],
   "AK-74M": [
     "Kalashnikov AK-74M",
     "AK-101",
@@ -71,13 +71,13 @@
     "AK-105",
     "AK-74M"
   ],
-  "AK-74N": ["Kalashnikov AK-74N", "AK-74N", "AK-74"],
+  "AK-74N": ["Kalashnikov AK-74N", "AK-74N", "AK-74", "AKS-74", "AKS-74N"],
   "AKM": ["Kalashnikov AKM", "AKM", "AKMN"],
   "AKMN": ["Kalashnikov AKMN", "AKMN", "AKM"],
   "AKMS": ["Kalashnikov AKMS", "AKMS", "AKMSN"],
-  "AKMSN": ["Kalashnikov AKMSN", "AKMSN"],
-  "AKS-74": ["Kalashnikov AKS-74", "AKS-74", "AKS-74N"],
-  "AKS-74N": ["Kalashnikov AKS-74N", "AKS-74N", "AKS-74"],
+  "AKMSN": ["Kalashnikov AKMSN", "AKMSN", "AKMS"],
+  "AKS-74": ["Kalashnikov AKS-74", "AKS-74", "AKS-74N", "AK-74", "AK-74N"],
+  "AKS-74N": ["Kalashnikov AKS-74N", "AKS-74N", "AKS-74", "AK-74", "AK-74N"],
   "AKS-74U": ["Kalashnikov AKS-74U", "AKS-74U", "AKS-74UN"],
   "AKS-74UB": ["Kalashnikov AKS-74UB", "AKS-74UB"],
   "AKS-74UN": ["Kalashnikov AKS-74UN", "AKS-74UN", "AKS-74U"],
@@ -154,8 +154,20 @@
   "M45A1": ["Colt M45A1", "M45A1"],
   "M4A1": ["Colt M4A1", "M4A1", "M4"],
   "M590A1": ["Mossberg 590A1", "M590A1", "590A1"],
-  "M60E4": ["U.S. Ordnance M60E4", "M60E4", "M60E6", "M60"],
-  "M60E6": ["U.S. Ordnance M60E6", "M60E6", "M60E4", "M60"],
+  "M60E4": [
+    "U.S. Ordnance M60E4",
+    "M60E4",
+    "U.S. Ordnance M60E6",
+    "M60E6",
+    "M60"
+  ],
+  "M60E6": [
+    "U.S. Ordnance M60E6",
+    "M60E6",
+    "U.S. Ordnance M60E4",
+    "M60E4",
+    "M60"
+  ],
   "M67": ["M67"],
   "M700": ["Remington Model 700", "Remington M700", "M700"],
   "M7290": ["M7290"],
@@ -215,9 +227,9 @@
   "RGO": ["RGO"],
   "RPD": ["Degtyarev RPD", "RPD", "Degtyarev RPDN", "RPDN"],
   "RPDN": ["Degtyarev RPDN", "RPDN", "Degtyarev RPD", "RPD"],
-  "RPK-16": ["RPK-16"],
+  "RPK-16": ["RPK-16", "RPK"],
   "RSASS": ["Remington R11 RSASS", "RSASS"],
-  "Rsh-12": ["RSh-12"],
+  "RSh-12": ["RSh-12", "RSh"],
   "SA58": ["DS Arms SA58", "SA58"],
   "SAG AK": [
     "SAG AK-545",
@@ -235,11 +247,29 @@
     "SAG AK Short",
     "AK-545 Short"
   ],
-  "Saiga-12K": ["Saiga-12K ver.10", "Saiga-12K"],
-  "Saiga-12K FA": ["Saiga-12K FA"],
+  "Saiga-12K": ["Saiga-12K ver.10", "Saiga-12K", "Saiga-12"],
+  "Saiga-12K FA": ["Saiga-12K FA", "Saiga-12 FA", "Saiga-12"],
   "Saiga-9": ["Saiga-9"],
-  "SCAR-H": ["FN SCAR-H", "SCAR-H", "SCAR", "Mk17"],
-  "SCAR-L": ["FN SCAR-L", "SCAR-L", "SCAR", "Mk16"],
+  "SCAR-H": [
+    "FN SCAR-H",
+    "SCAR-H",
+    "SCAR",
+    "Mk17",
+    "FN SCAR-L",
+    "SCAR-L",
+    "SCAR",
+    "Mk16"
+  ],
+  "SCAR-L": [
+    "FN SCAR-L",
+    "SCAR-L",
+    "SCAR",
+    "Mk16",
+    "FN SCAR-H",
+    "SCAR-H",
+    "SCAR",
+    "Mk17"
+  ],
   "SKS": ["TOZ Simonov SKS", "TOZ SKS", "SKS"],
   "SP-81": ["ZiD SP-81", "SP-81"],
   "SR-1MP Gyurza": [
