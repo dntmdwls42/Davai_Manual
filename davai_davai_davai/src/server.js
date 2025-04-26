@@ -48,7 +48,7 @@ async function loadCaliberAnswers() {
 // 초기화 함수
 async function initializeData() {
   try {
-    connectDB()
+    await connectDB()
       .then((connection) => {
         db = connection;
         console.log("DB connection established for the server.");
