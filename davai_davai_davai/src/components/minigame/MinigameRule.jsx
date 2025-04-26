@@ -57,7 +57,7 @@ function MinigameRule() {
           <div className="minigame-menu__quiz-selector center-column">
             <p className="minigame-menu__quiz-selector__text">공통규칙.</p>
             <p className="minigame-menu__quiz-selector__text">
-              1. 문제 정답은 영어로 입력해주세요.
+              1. 문제 정답은 영어, 숫자, 특수기호로 입력해주세요.
               <br />
               2. 문제를 맞추면 다음 문제로 넘어갑니다.
               <br />
