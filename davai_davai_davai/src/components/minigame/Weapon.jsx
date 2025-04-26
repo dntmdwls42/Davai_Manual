@@ -1,11 +1,16 @@
 import React from "react";
 import { useLocation, Link } from "react-router-dom";
 import "../../css/components/Minigame.css";
+import {
+  setScoreToLocalStorage,
+  getScoreFromLocalStorage,
+} from "../../utils/useLocalStorage.js";
 
 function Weapon() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const quizNumber = parseInt(queryParams.get("number"), 10) || 5;
+  const quizType = queryParams.get("quizType") || "weapon";
 
   const [weaponList, setWeaponList] = React.useState([]);
   const [imageList, setImageList] = React.useState([]);
@@ -22,6 +27,8 @@ function Weapon() {
   const [isSubmitted, setIsSubmitted] = React.useState(false);
   const [message, setMessage] = React.useState("");
   const [isGameOver, setIsGameOver] = React.useState(false);
+  const [userName, setUserName] = React.useState("Anonymous");
+  const [rankings, setRankings] = React.useState([]);
 
   const checkAnswer = (userInput, answers) => {
     if (!userInput || !answers || answers.length === 0) return false;
@@ -92,6 +99,7 @@ function Weapon() {
     setIsSubmitted(false);
     setUserInput("");
     setMessage("");
+    setRankings([]);
   };
 
   React.useEffect(() => {
@@ -103,6 +111,17 @@ function Weapon() {
     if (weaponList.length > 0) fetchRandomWeapon();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [weaponList]);
+
+  React.useEffect(() => {
+    if (isGameOver) {
+      setScoreToLocalStorage(quizType, quizNumber, userName, score);
+      setRankings(getScoreFromLocalStorage(quizType, quizNumber));
+    }
+  }, [isGameOver]);
+
+  React.useEffect(() => {
+    console.log("rankings : ", rankings);
+  }, [rankings]);
 
   const handleInputChange = (e) => {
     setUserInput(e.target.value);
@@ -126,7 +145,7 @@ function Weapon() {
   };
 
   const handleNext = () => {
-    if (life < 0) {
+    if (life < 0 || quizCount >= maxQuizCount - 1) {
       setIsGameOver(true);
     } else {
       setQuizCount((count) => count + 1);
@@ -146,7 +165,7 @@ function Weapon() {
     return <div>Loading...</div>;
   }
 
-  if (isGameOver || quizCount >= maxQuizCount) {
+  if (isGameOver) {
     return (
       <>
         <div id="minigame-container" className="page-container">
@@ -168,6 +187,64 @@ function Weapon() {
             <h2 className="minigame-quiz__game-over__quiz-hp-remain">
               남은 생명 : {isGameOver ? 0 : life}
             </h2>
+
+            <div className="minigame-quiz__game-over__rankings">
+              <h2>
+                1.{" "}
+                {rankings[0]
+                  ? "이름 : " +
+                    rankings[0].userName +
+                    " " +
+                    "점수 : " +
+                    rankings[0].score +
+                    "점"
+                  : ""}
+              </h2>
+              <h2>
+                2.{" "}
+                {rankings[1]
+                  ? "이름 : " +
+                    rankings[1].userName +
+                    " " +
+                    "점수 : " +
+                    rankings[1].score +
+                    "점"
+                  : ""}
+              </h2>
+              <h2>
+                3.{" "}
+                {rankings[2]
+                  ? "이름 : " +
+                    rankings[2].userName +
+                    " " +
+                    "점수 : " +
+                    rankings[2].score +
+                    "점"
+                  : ""}
+              </h2>
+              <h2>
+                4.{" "}
+                {rankings[3]
+                  ? "이름 : " +
+                    rankings[3].userName +
+                    " " +
+                    "점수 : " +
+                    rankings[3].score +
+                    "점"
+                  : ""}
+              </h2>
+              <h2>
+                5.{" "}
+                {rankings[4]
+                  ? "이름 : " +
+                    rankings[4].userName +
+                    " " +
+                    "점수 : " +
+                    rankings[4].score +
+                    "점"
+                  : ""}
+              </h2>
+            </div>
             <button
               className="minigame-quiz__game-over__quiz-restart-button"
               onClick={handleRestart}

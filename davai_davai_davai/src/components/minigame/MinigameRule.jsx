@@ -18,9 +18,9 @@ function MinigameRule() {
   const getQuizLink = () => {
     switch (quizType) {
       case "weapon":
-        return `/Minigame/Weapon?number=${quizNumber}`;
+        return `/Minigame/Weapon?number=${quizNumber}&quizType=${quizType}`;
       case "weaponAndCaliber":
-        return `/Minigame/WeaponAndCaliber?number=${quizNumber}`;
+        return `/Minigame/WeaponAndCaliber?number=${quizNumber}&quizType=${quizType}`;
     }
   };
 
