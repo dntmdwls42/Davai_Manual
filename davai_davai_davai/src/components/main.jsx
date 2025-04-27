@@ -7,6 +7,7 @@ import Background from "./layout/Background";
 import AnimationTest from "./AnimationTest";
 import Layout from "./layout/Layout";
 import Header from "./layout/Header";
+
 import "../css/common/index.css";
 import "../css/components/background.css";
 import "../css/components/Header.css";

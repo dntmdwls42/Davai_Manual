@@ -15,14 +15,6 @@
   clip-path: inset(1px 1px 1px 1px round var(--global-border-radius));
 }
 
-.minigame-menu__back-button {
-  position: absolute;
-  left: 24px;
-  top: 27px;
-  width: 25px;
-  height: 25px;
-}
-
 .minigame-menu__title {
   color: white;
   font-size: 32px;

@@ -79,6 +79,15 @@ a {
   visibility: hidden;
 }
 
+.back-button {
+  position: absolute;
+  left: 24px;
+  top: 27px;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
 .page-container {
   display: flex;
   flex-direction: column;

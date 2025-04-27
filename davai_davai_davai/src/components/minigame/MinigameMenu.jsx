@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 import "../../css/components/MinigameMenu.css";
+
+import { onClickBackButton } from "../../utils/utils.js";
 
 function MinigameMenu() {
   const [quizNumber, setQuizNumber] = React.useState(5);
@@ -27,18 +30,16 @@ function MinigameMenu() {
     <>
       <div id="minigame-container" className="page-container">
         <div className="minigame-menu">
-          <div className="minigame-menu__back-button">
-            <Link to={`/`}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="100%"
-                viewBox="0 -960 960 960"
-                width="100%"
-                fill="#e3e3e3"
-              >
-                <path d="M640-80 240-480l400-400 71 71-329 329 329 329-71 71Z" />
-              </svg>
-            </Link>
+          <div className="back-button" onClick={onClickBackButton}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="100%"
+              viewBox="0 -960 960 960"
+              width="100%"
+              fill="#e3e3e3"
+            >
+              <path d="M640-80 240-480l400-400 71 71-329 329 329 329-71 71Z" />
+            </svg>
           </div>
           <h1 className="minigame-menu__title">총기 퀴즈 선택</h1>
           {/* 아래에 삽입된 이미지는 임시임. */}
