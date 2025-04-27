@@ -179,6 +179,17 @@ function Weapon() {
       <>
         <div id="minigame-container" className="page-container">
           <div className="minigame-gameover">
+            <div className="back-button" onClick={onClickBackButton}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="100%"
+                viewBox="0 -960 960 960"
+                width="100%"
+                fill="#e3e3e3"
+              >
+                <path d="M640-80 240-480l400-400 71 71-329 329 329 329-71 71Z" />
+              </svg>
+            </div>
             <h1 className="minigame-quiz__game-over-title">
               {isGameOver
                 ? "모든 체력을 소모하였습니다."
