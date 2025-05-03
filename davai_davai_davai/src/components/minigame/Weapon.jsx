@@ -205,7 +205,7 @@ function Weapon() {
               맞춘 문제 수 : {score}
             </h2>
             <h2 className="minigame-quiz__game-over__quiz-hp-remain">
-              남은 생명 : {isGameOver ? 0 : life}
+              남은 생명 : {life < 0 ? 0 : life}
             </h2>
 
             <div className="minigame-quiz__game-over__rankings">
