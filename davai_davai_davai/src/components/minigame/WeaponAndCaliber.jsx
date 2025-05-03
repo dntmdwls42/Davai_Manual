@@ -3,12 +3,17 @@ import { useLocation } from "react-router-dom";
 
 import "../../css/components/Minigame.css";
 
+import {
+  setScoreToLocalStorage,
+  getScoreFromLocalStorage,
+} from "../../utils/useLocalStorage.js";
 import { onClickBackButton } from "../../utils/utils.js";
 
 function WeaponAndCaliber() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const quizNumber = parseInt(queryParams.get("number"), 10) || 5; // 999는 모든 문제를 의미함
+  const quizType = queryParams.get("quizType") || "weaponAndCaliber";
 
   const [weaponList, setWeaponList] = React.useState([]);
   const [imageList, setImageList] = React.useState([]);
@@ -24,6 +29,9 @@ function WeaponAndCaliber() {
   // 제출 시 버튼 비활성화 및 다음 문제 버튼 출력
   const [isSubmitted, setIsSubmitted] = React.useState(false);
   const [message, setMessage] = React.useState("");
+  const [isGameOver, setIsGameOver] = React.useState(false);
+  const [userName, setUserName] = React.useState("Anonymous");
+  const [rankings, setRankings] = React.useState([]);
 
   const checkAnswer = (userInput, answers) => {
     if (!userInput || !answers || answers.length === 0) return false;
@@ -114,6 +122,17 @@ function WeaponAndCaliber() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [weaponList]);
 
+  React.useEffect(() => {
+    if (isGameOver) {
+      setScoreToLocalStorage(quizType, quizNumber, userName, score);
+      setRankings(getScoreFromLocalStorage(quizType, quizNumber));
+    }
+  }, [isGameOver]);
+
+  React.useEffect(() => {
+    console.log("rankings : ", rankings);
+  }, [rankings]);
+
   const handleInputChange = (e) => {
     setUserInput(e.target.value);
   };
@@ -122,6 +141,7 @@ function WeaponAndCaliber() {
     e.preventDefault();
 
     const isCorrect = checkAnswer(userInput, data.matchedCaliberAnswers);
+
     if (isCorrect) {
       setScore((score) => score + 1);
       setMessage("정답입니다! 점수가 1점 증가했습니다.");
@@ -135,11 +155,16 @@ function WeaponAndCaliber() {
   };
 
   const handleNext = () => {
-    setQuizCount((count) => count + 1);
-    fetchRandomWeapon();
-    setTimeout(() => {
-      document.querySelector("#user-input").focus();
-    }, 0);
+    if (life < 0 || quizCount >= maxQuizCount - 1) {
+      setIsGameOver(true);
+    } else {
+      setQuizCount((count) => count + 1);
+      fetchRandomWeapon();
+
+      setTimeout(() => {
+        document.querySelector("#user-input").focus();
+      }, 0);
+    }
   };
 
   const handleRestart = () => {
@@ -150,7 +175,7 @@ function WeaponAndCaliber() {
     return <div>Loading...</div>;
   }
 
-  if (life < 0 || quizCount >= maxQuizCount) {
+  if (isGameOver) {
     return (
       <>
         <div id="minigame-container" className="page-container">
@@ -183,6 +208,64 @@ function WeaponAndCaliber() {
             <h2 className="minigame-quiz__game-over__quiz-hp-remain">
               남은 생명 : {life < 0 ? 0 : life}
             </h2>
+
+            <div className="minigame-quiz__game-over__rankings">
+              <h2>
+                1.{" "}
+                {rankings[0]
+                  ? "이름 : " +
+                    rankings[0].userName +
+                    " " +
+                    "점수 : " +
+                    rankings[0].score +
+                    "점"
+                  : ""}
+              </h2>
+              <h2>
+                2.{" "}
+                {rankings[1]
+                  ? "이름 : " +
+                    rankings[1].userName +
+                    " " +
+                    "점수 : " +
+                    rankings[1].score +
+                    "점"
+                  : ""}
+              </h2>
+              <h2>
+                3.{" "}
+                {rankings[2]
+                  ? "이름 : " +
+                    rankings[2].userName +
+                    " " +
+                    "점수 : " +
+                    rankings[2].score +
+                    "점"
+                  : ""}
+              </h2>
+              <h2>
+                4.{" "}
+                {rankings[3]
+                  ? "이름 : " +
+                    rankings[3].userName +
+                    " " +
+                    "점수 : " +
+                    rankings[3].score +
+                    "점"
+                  : ""}
+              </h2>
+              <h2>
+                5.{" "}
+                {rankings[4]
+                  ? "이름 : " +
+                    rankings[4].userName +
+                    " " +
+                    "점수 : " +
+                    rankings[4].score +
+                    "점"
+                  : ""}
+              </h2>
+            </div>
 
             <button
               className="minigame-quiz__game-over__quiz-restart-button"
