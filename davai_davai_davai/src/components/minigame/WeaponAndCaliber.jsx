@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import "../../css/components/Minigame.css";
 
@@ -8,7 +8,7 @@ import { onClickBackButton } from "../../utils/utils.js";
 function WeaponAndCaliber() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const quizNumber = parseInt(queryParams.get("number"), 10) || 5;
+  const quizNumber = parseInt(queryParams.get("number"), 10) || 5; // 999는 모든 문제를 의미함
 
   const [weaponList, setWeaponList] = React.useState([]);
   const [imageList, setImageList] = React.useState([]);
@@ -19,7 +19,7 @@ function WeaponAndCaliber() {
   const [life, setLife] = React.useState(3);
   const [quizCount, setQuizCount] = React.useState(0);
   // minigame 페이지에서 quizNumber를 URL 파라미터로 받아옴
-  const [maxQuizCount] = React.useState(quizNumber);
+  const [maxQuizCount, setMaxQuizCount] = React.useState(quizNumber);
   const [userInput, setUserInput] = React.useState("");
   // 제출 시 버튼 비활성화 및 다음 문제 버튼 출력
   const [isSubmitted, setIsSubmitted] = React.useState(false);
@@ -103,7 +103,9 @@ function WeaponAndCaliber() {
   }, []);
 
   React.useEffect(() => {
-    console.log("data : ", data);
+    if (quizNumber === 999) {
+      setMaxQuizCount(weaponList.length);
+    }
   }, [data]);
 
   // 무기 리스트가 업데이트 되면 무기를 불러옴
