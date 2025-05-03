@@ -105,7 +105,12 @@ async function initializeData() {
 const server = Bun.serve({
   port: 8000,
   async fetch(req) {
-    console.log("New request received : ", req.url);
+    console.log("New request received:", {
+      url: req.url,
+      method: req.method,
+      headers: Object.fromEntries(req.headers),
+      referrer: req.headers.get("referer"),
+    });
     const corsHeaders = {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
