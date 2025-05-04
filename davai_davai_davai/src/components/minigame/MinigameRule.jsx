@@ -14,7 +14,7 @@ function MinigameRule() {
     queryParams.get("quizType") || "weapon",
   );
 
-  const [quizTitle, setQuizTitle] = React.useState("총기 이름 맞추기");
+  const [quizTitle, setQuizTitle] = React.useState("무기 이름 맞추기");
 
   console.log("quizType : ", quizType);
 
@@ -24,20 +24,82 @@ function MinigameRule() {
         return `/Minigame/Weapon?number=${quizNumber}&quizType=${quizType}`;
       case "weaponAndCaliber":
         return `/Minigame/WeaponAndCaliber?number=${quizNumber}&quizType=${quizType}`;
+      default:
+        return `/Minigame/Weapon?number=${quizNumber}&quizType=${quizType}`;
     }
   };
 
   React.useEffect(() => {
     switch (quizType) {
       case "weapon":
-        setQuizTitle("총기 이름 맞추기 규칙");
+        setQuizTitle("무기 이름 맞추기 규칙");
         return;
         "";
       case "weaponAndCaliber":
         setQuizTitle("총기 구경 맞추기 규칙");
         return;
+      default:
+        setQuizTitle("무기 이름 맞추기 규칙");
     }
   }, []);
+
+  const renderSpecificRules = () => {
+    switch (quizType) {
+      case "weapon":
+        return (
+          <>
+            <p className="minigame-menu__quiz-selector__text">
+              무기 이름 맞추기 규칙.
+            </p>
+            <p className="minigame-menu__quiz-selector__text">
+              1. 띄어쓰기, " - " 의 경우에는 작성을 꼭 하지 않으셔도 됩니다.
+              <br />
+              예시&#41; RD-704 : "RD704" 라고 적어도 정답입니다.
+              <br />
+              2. 총기의 풀네임을 적지 않아도 됩니다.
+              <br />
+              예시&#41; G28 : "HK G28", "G28", "HK417" 모두 정답입니다.
+              <br />
+              3. 외형으로 구분이 불가능하거나 힘든 총기 종류는 모두 중복 정답
+              처리됩니다.
+              <br />
+              예시&#41; SVT-40 &#60;-&#62; AVT-40 : 양쪽 다 총기 이름이 모두
+              정답입니다.
+            </p>
+          </>
+        );
+      case "weaponAndCaliber":
+        return (
+          <>
+            <p className="minigame-menu__quiz-selector__text">
+              총기 구경 맞추기 규칙.
+            </p>
+            <p className="minigame-menu__quiz-selector__text">
+              1. 타르코프에서 발사 가능한 구경을 기준으로 합니다. 삽탄이 가능한
+              기준이 아닙니다.
+              <br />
+              예시&#41; M4A1 : "5.56x45"는 정답, ".300 Blackout"은 오답입니다.
+              <br />
+              2. 특수기호를 정확히 입력해주세요. mm는 생략 가능합니다.
+              <br />
+              예시&#41; 5.56x45 : "5.56x45", "5.56x45mm", "5.56x45mm NATO" 모두
+              정답입니다. "55645", "5.5645", "NATO"는 오답입니다.
+              <br />
+              3. 외형으로 구분이 불가능하거나 힘든 총기 종류의 구경은 모두 중복
+              정답 처리됩니다.
+              <br />
+              예시&#41; SCAR-L &#60;-&#62; SCAR-H : 양쪽 다 구경별로 사막색,
+              검은색이 존재해서 "5.56x45"와 "7.62x51" 모두 정답입니다.
+              <br />
+              하지만 Vector .45 &#60;-&#62; Vector 9mm : 색상으로 구분
+              가능하므로 각각의 구경에 맞는 색상을 적어주셔야 합니다.
+            </p>
+          </>
+        );
+      default:
+        return null;
+    }
+  };
 
   return (
     <>
@@ -68,24 +130,7 @@ function MinigameRule() {
               <br />
               5. 문제를 모두 맞추면 게임이 종료됩니다.
             </p>
-            <p className="minigame-menu__quiz-selector__text">
-              무기 이름 맞추기 규칙.
-            </p>
-            <p className="minigame-menu__quiz-selector__text">
-              1. 띄어쓰기, " - " 의 경우에는 작성을 꼭 하지 않으셔도 됩니다.
-              <br />
-              예시&#41; RD-704 : "RD704" 라고 적어도 정답입니다.
-              <br />
-              2. 총기의 풀네임을 적지 않아도 됩니다.
-              <br />
-              예시&#41; G28 : "HK G28", "G28", "HK417" 모두 정답입니다.
-              <br />
-              3. 외형으로 구분이 불가능하거나 힘든 총기 종류는 모두 중복 정답
-              처리됩니다.
-              <br />
-              예시&#41; SVT-40 &#60;-&#62; AVT-40 : 양쪽 다 총기 이름이 모두
-              정답입니다.
-            </p>
+            {renderSpecificRules()}
           </div>
           <Link to={getQuizLink()}>
             <button className="minigame-menu__quiz-selector__button">
