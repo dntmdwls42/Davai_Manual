@@ -95,6 +95,7 @@ a {
   height: 100%;
   width: 100%;
   box-sizing: border-box;
+  z-index: 999;
 }
 
 .page-container > h1 {
