@@ -3,14 +3,12 @@
   "AA-12 Gen 1": [
     "MPS Auto Assault-12 Gen 1",
     "AA-12 Gen 1",
-    "AA-12",
     "MPS Auto Assault-12 Gen 2",
     "AA-12 Gen 2"
   ],
   "AA-12 Gen 2": [
     "MPS Auto Assault-12 Gen 2",
     "AA-12 Gen 2",
-    "AA-12",
     "MPS Auto Assault-12 Gen 1",
     "AA-12 Gen 1"
   ],
@@ -85,8 +83,8 @@
   "APS": ["Stechkin APS", "APS"],
   "AS VAL": ["AS VAL"],
   "Ash-12": ["Ash-12"],
-  "AUG A1": ["Steyr AUG A1", "AUG A1", "AUG"],
-  "AUG A3": ["Steyr AUG A3", "AUG A3", "AUG"],
+  "AUG A1": ["Steyr AUG A1", "AUG A1"],
+  "AUG A3": ["Steyr AUG A3", "AUG A3"],
   "AVT-40": [
     "Tokarev AVT-40",
     "AVT-40",
@@ -131,18 +129,8 @@
     "Desert Eagle L5 .50 AE",
     "Desert Eagle L6"
   ],
-  "DT MDR 5.56x45": [
-    "Desert Tech MDR 5.56x45",
-    "DT MDR 5.56x45",
-    "DT MDR",
-    "MDR"
-  ],
-  "DT MDR 7.62x51": [
-    "Desert Tech MDR 7.62x51",
-    "DT MDR 7.62x51",
-    "DT MDR",
-    "MDR"
-  ],
+  "DT MDR 5.56x45": ["Desert Tech MDR 5.56x45", "DT MDR 5.56x45"],
+  "DT MDR 7.62x51": ["Desert Tech MDR 7.62x51", "DT MDR 7.62x51"],
   "DVL-10": ["Lobaev Arms DVL-10", "DVL-10", "DVL"],
   "F-1": ["F-1"],
   "FN 5-7": ["FN Five-seveN MK2", "FN 5-7", "Five-seveN", "5-7"],
@@ -161,20 +149,8 @@
   "M45A1": ["Colt M45A1", "M45A1"],
   "M4A1": ["Colt M4A1", "M4A1", "M4"],
   "M590A1": ["Mossberg 590A1", "M590A1", "590A1"],
-  "M60E4": [
-    "U.S. Ordnance M60E4",
-    "M60E4",
-    "U.S. Ordnance M60E6",
-    "M60E6",
-    "M60"
-  ],
-  "M60E6": [
-    "U.S. Ordnance M60E6",
-    "M60E6",
-    "U.S. Ordnance M60E4",
-    "M60E4",
-    "M60"
-  ],
+  "M60E4": ["U.S. Ordnance M60E4", "M60E4", "U.S. Ordnance M60E6", "M60E6"],
+  "M60E6": ["U.S. Ordnance M60E6", "M60E6", "U.S. Ordnance M60E4", "M60E4"],
   "M67": ["M67"],
   "M700": ["Remington Model 700", "Remington M700", "M700"],
   "M7290": ["M7290"],
@@ -184,13 +160,13 @@
   "MCX-SPEAR": ["SIG MCX-SPEAR", "MCX-SPEAR", "SPEAR"],
   "Mk-18": ["SWORD International Mk-18", "Mk-18 Mjolnir", "Mk-18", "Mjolnir"],
   "Mk47": ["CMMG Mk47 Mutant", "CMMG Mk47", "Mk47 Mutant", "Mk47"],
-  "Mosin Infantry": ["Mosin Infantry", "Mosin", "Mosin Sniper"],
-  "Mosin Sniper": ["Mosin Sniper", "Mosin", "Mosin Infantry"],
+  "Mosin Infantry": ["Mosin Infantry", "Mosin Sniper"],
+  "Mosin Sniper": ["Mosin Sniper", "Mosin Infantry"],
   "MP-133": ["MP-133"],
   "MP-153": ["MP-153"],
   "MP-155": ["MP-155"],
   "MP-18": ["MP-18"],
-  "MP-43 sawed-off": ["MP-43 Sawed-off", "MP-43", "Sawed-off"],
+  "MP-43 sawed-off": ["MP-43 Sawed-off", "Sawed-off"],
   "MP-43-1C": ["MP-43-1C", "MP-43"],
   "MP-443 Grach": ["Yarygin MP-443 Grach", "MP-443 Grach", "MP-443", "Grach"],
   "MP5": ["HK MP5", "MP5"],
@@ -208,7 +184,7 @@
   "PKM": ["Kalashnikov PKM", "PKM"],
   "PKP": ["Kalashnikov PKP", "PKP"],
   "PL-15": ["Lebedev PL-15", "PL-15"],
-  "PM (t) pistol": ["Makarov PM (t)", "PM (t) pistol", "PM pistol", "PM"],
+  "PM (t) pistol": ["Makarov PM (t)", "PM (t) pistol", "PM pistol", "PM (t)"],
   "PM pistol": ["Makarov PM", "PM pistol", "PM (t) pistol", "PM"],
   "PP-19-01": [
     "PP-19-01 Vityaz",
@@ -219,13 +195,7 @@
   ],
   "PP-9 Klin": ["PP-9 Klin", "PP-9", "Klin", "PP-91 Kedr", "PP-91", "Kedr"],
   "PP-91 Kedr": ["PP-91 Kedr", "PP-91", "Kedr", "PP-9 Klin", "PP-9", "Klin"],
-  "PP-91-01 Kedr-B": [
-    "PP-91-01 Kedr-B",
-    "PP-91-01",
-    "PP-91",
-    "PP-91 Kedr-B",
-    "Kedr-B"
-  ],
+  "PP-91-01 Kedr-B": ["PP-91-01 Kedr-B", "PP-91-01", "PP-91 Kedr-B", "Kedr-B"],
   "PPSh-41": ["PPSh-41", "PPSh"],
   "RD-704": ["Rifle Dynamics RD-704", "RD-704"],
   "RFB": ["Kel-Tec RFB", "RFB"],
@@ -255,28 +225,10 @@
     "AK-545 Short"
   ],
   "Saiga-12K": ["Saiga-12K ver.10", "Saiga-12K", "Saiga-12"],
-  "Saiga-12K FA": ["Saiga-12K FA", "Saiga-12 FA", "Saiga-12"],
+  "Saiga-12K FA": ["Saiga-12K FA", "Saiga-12 FA"],
   "Saiga-9": ["Saiga-9"],
-  "SCAR-H": [
-    "FN SCAR-H",
-    "SCAR-H",
-    "SCAR",
-    "Mk17",
-    "FN SCAR-L",
-    "SCAR-L",
-    "SCAR",
-    "Mk16"
-  ],
-  "SCAR-L": [
-    "FN SCAR-L",
-    "SCAR-L",
-    "SCAR",
-    "Mk16",
-    "FN SCAR-H",
-    "SCAR-H",
-    "SCAR",
-    "Mk17"
-  ],
+  "SCAR-H": ["FN SCAR-H", "SCAR-H", "Mk17", "FN SCAR-L", "SCAR-L", "Mk16"],
+  "SCAR-L": ["FN SCAR-L", "SCAR-L", "Mk16", "FN SCAR-H", "SCAR-H", "Mk17"],
   "SKS": ["TOZ Simonov SKS", "TOZ SKS", "SKS"],
   "SP-81": ["ZiD SP-81", "SP-81"],
   "SR-1MP Gyurza": [
@@ -317,13 +269,8 @@
   "UZI PRO Pistol": ["IWI UZI PRO Pistol", "UZI PRO Pistol"],
   "UZI PRO SMG": ["IWI UZI PRO SMG", "UZI PRO SMG"],
   "V40": ["V40"],
-  "Vector .45": [
-    "TDI KRISS Vector Gen.2",
-    "Vector .45ACP",
-    "Vector .45",
-    "Vector"
-  ],
-  "Vector 9x19": ["TDI KRISS Vector Gen.2", "Vector 9x19", "Vector"],
+  "Vector .45": ["TDI KRISS Vector Gen.2", "Vector .45ACP", "Vector .45"],
+  "Vector 9x19": ["TDI KRISS Vector Gen.2", "Vector 9x19", "Vector 9mm"],
   "Velociraptor": ["Aklys Defense Velociraptor", "Velociraptor"],
   "VOG-17": ["VOG-17"],
   "VOG-25": ["VOG-25"],
