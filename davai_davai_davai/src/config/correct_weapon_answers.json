@@ -102,27 +102,34 @@
   "Desert Eagle L5 .357": [
     "Magnum Research Desert Eagle L5 .357",
     "Desert Eagle L5 .357",
-    "Desert Eagle"
+    "Desert Eagle L5 .50 AE",
+    "Desert Eagle L6",
+    "Desert Eagle Mk XIX"
   ],
   "Desert Eagle L5 .50 AE": [
     "Magnum Research Desert Eagle L5 .50 AE",
     "Desert Eagle L5 .50 AE",
-    "Desert Eagle"
+    "Desert Eagle L5 .357",
+    "Desert Eagle L6",
+    "Desert Eagle Mk XIX"
   ],
   "Desert Eagle L6": [
     "Magnum Research Desert Eagle L6",
     "Desert Eagle L6",
-    "Desert Eagle"
+    "Desert Eagle L5 .50 AE",
+    "Desert Eagle L5 .357",
+    "Desert Eagle Mk XIX"
   ],
   "Desert Eagle L6 (WTS)": [
     "Magnum Research Desert Eagle L6 (WTS)",
-    "Desert Eagle L6 (WTS)",
-    "Desert Eagle"
+    "Desert Eagle L6 (WTS)"
   ],
   "Desert Eagle Mk XIX": [
     "Magnum Research Desert Eagle Mk XIX",
     "Desert Eagle Mk XIX",
-    "Desert Eagle"
+    "Desert Eagle L5 .357",
+    "Desert Eagle L5 .50 AE",
+    "Desert Eagle L6"
   ],
   "DT MDR 5.56x45": [
     "Desert Tech MDR 5.56x45",
