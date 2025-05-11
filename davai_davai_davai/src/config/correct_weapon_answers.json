@@ -83,8 +83,8 @@
   "APS": ["Stechkin APS", "APS"],
   "AS VAL": ["AS VAL"],
   "Ash-12": ["Ash-12"],
-  "AUG A1": ["Steyr AUG A1", "AUG A1"],
-  "AUG A3": ["Steyr AUG A3", "AUG A3"],
+  "AUG A1": ["Steyr AUG A1", "AUG A1", "AUG A3"],
+  "AUG A3": ["Steyr AUG A3", "AUG A3", "AUG A1"],
   "AVT-40": [
     "Tokarev AVT-40",
     "AVT-40",
@@ -129,8 +129,16 @@
     "Desert Eagle L5 .50 AE",
     "Desert Eagle L6"
   ],
-  "DT MDR 5.56x45": ["Desert Tech MDR 5.56x45", "DT MDR 5.56x45"],
-  "DT MDR 7.62x51": ["Desert Tech MDR 7.62x51", "DT MDR 7.62x51"],
+  "DT MDR 5.56x45": [
+    "Desert Tech MDR 5.56x45",
+    "DT MDR 5.56x45",
+    "MDR 5.56x45"
+  ],
+  "DT MDR 7.62x51": [
+    "Desert Tech MDR 7.62x51",
+    "DT MDR 7.62x51",
+    "MDR 7.62x51"
+  ],
   "DVL-10": ["Lobaev Arms DVL-10", "DVL-10", "DVL"],
   "F-1": ["F-1"],
   "FN 5-7": ["FN Five-seveN MK2", "FN 5-7", "Five-seveN", "5-7"],
@@ -140,11 +148,11 @@
   "Glock 17": ["Glock 17", "G17", "Glock 18C", "G18C", "G18"],
   "Glock 18C": ["Glock 18C", "G18C", "G18", "Glock 17", "G17"],
   "Glock 19X": ["Glock 19X", "G19X", "G19"],
-  "HK 416A5": ["HK 416A5", "HK416"],
+  "HK 416A5": ["HK 416A5", "HK416", "416A5"],
   "KS-23M": ["TOZ KS-23M", "KS-23M", "KS-23"],
   "M1911A1": ["Colt M1911A1", "M1911A1", "M1911"],
   "M1A": ["Springfield Armory M1A", "M1A"],
-  "M3 Super 90": ["Benelli M3 Super 90", "M3 Super 90", "M3 Super"],
+  "M3 Super 90": ["Benelli M3 Super 90", "M3 Super 90", "M3 Super", "Super 90"],
   "M32A1": ["Milkor M32A1 MSGL", "M32A1 MSGL", "M32A1", "MSGL"],
   "M45A1": ["Colt M45A1", "M45A1"],
   "M4A1": ["Colt M4A1", "M4A1", "M4"],
@@ -184,8 +192,14 @@
   "PKM": ["Kalashnikov PKM", "PKM"],
   "PKP": ["Kalashnikov PKP", "PKP"],
   "PL-15": ["Lebedev PL-15", "PL-15"],
-  "PM (t) pistol": ["Makarov PM (t)", "PM (t) pistol", "PM pistol", "PM (t)"],
-  "PM pistol": ["Makarov PM", "PM pistol", "PM (t) pistol", "PM"],
+  "PM (t) pistol": [
+    "Makarov PM (t)",
+    "PM (t) pistol",
+    "PM pistol",
+    "PM (t)",
+    "PM"
+  ],
+  "PM pistol": ["Makarov PM", "PM pistol", "PM (t) pistol", "PM", "PM (t)"],
   "PP-19-01": [
     "PP-19-01 Vityaz",
     "PP-19-01",
