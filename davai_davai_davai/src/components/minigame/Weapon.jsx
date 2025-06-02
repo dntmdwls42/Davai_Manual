@@ -43,8 +43,8 @@ function Weapon() {
       .replace(/-/g, "")
       .toLowerCase();
 
-    // 사용자의 입력이 정답 문자열에 포함되어 있으면 true가 반환됨
-    return answers.some((answer) => {
+    // 사용자의 입력이 정답 문자열에 포함되어 있으면 해당 문자열을 반환함
+    const matchedAnswer = answers.find((answer) => {
       const normalizedAnswer = answer
         .trim()
         .replace(/\s+/g, "")
@@ -53,6 +53,10 @@ function Weapon() {
 
       return normalizedInput.includes(normalizedAnswer);
     });
+
+    console.log("matchedAnswer : ", matchedAnswer);
+
+    return !!matchedAnswer;
   };
 
   const fetchDataList = async () => {
